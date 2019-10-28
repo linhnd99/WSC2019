@@ -27,13 +27,26 @@ namespace WSC2019
         private void LoadDataTable()
         {
             Session2Entities db = new Session2Entities();
-
-            dgvEmergencyMaintenance.DataSource = db.SP_GetdgvEmergency(this.username);
+            dgvEmergencyMaintenance.DataSource = from x in db.SP_GetdgvEmergency(this.username) select x;
         }
 
         private void DgvEmergencyMaintenance_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            frmEmergencyMaintenanceRequest frm2 = new frmEmergencyMaintenanceRequest();
+            //List<object> dataSend = new List<object>();
+            //dataSend.Add(dgvEmergencyMaintenance.SelectedRows[0].ToString());
+            //dataSend.Add(dgvEmergencyMaintenance.SelectedRows[1].ToString());
+            //int currentRow = dgvEmergencyMaintenance.CurrentRow.Index;
+            Dictionary<string, string> dataSend = new Dictionary<string, string>();
+            dataSend["AssetSN"] = dgvEmergencyMaintenance.CurrentRow.Cells[0].Value.ToString();
+            dataSend["AssetName"] = dgvEmergencyMaintenance.CurrentRow.Cells[1].Value.ToString();
+            frm2.Tag = dataSend;
+            frm2.ShowDialog();
         }
     }
 }

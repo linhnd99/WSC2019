@@ -30,9 +30,9 @@ namespace WSC2019.Model
         public Nullable<System.DateTime> WarrantyDate { get; set; }
     
         public virtual AssetGroup AssetGroup { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmergencyMaintenance> EmergencyMaintenances { get; set; }
         public virtual DepartmentLocation DepartmentLocation { get; set; }
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmergencyMaintenance> EmergencyMaintenances { get; set; }
     }
 }

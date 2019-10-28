@@ -60,6 +60,7 @@
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send Emergency Maintenance Request";
             this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // frmEmergencyMaintenanceManagement
             // 
@@ -70,6 +71,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvEmergencyMaintenance);
             this.Name = "frmEmergencyMaintenanceManagement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Emergency Maintenance Management";
             this.Load += new System.EventHandler(this.FrmEmergencyMaintenanceManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmergencyMaintenance)).EndInit();

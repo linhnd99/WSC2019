@@ -10,16 +10,13 @@
 namespace WSC2019.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ChangedPart
+    public partial class SP_GetdgvRequest_Result
     {
-        public string ID { get; set; }
-        public Nullable<int> EmergencyMaintenanceID { get; set; }
-        public string PartID { get; set; }
-        public Nullable<double> Amount { get; set; }
-    
-        public virtual EmergencyMaintenance EmergencyMaintenance { get; set; }
-        public virtual Part Part { get; set; }
+        public string Asset_SN { get; set; }
+        public string Asset_Name { get; set; }
+        public Nullable<System.DateTime> Request_Date { get; set; }
+        public string Employee_Full_Name { get; set; }
+        public string Department { get; set; }
     }
 }

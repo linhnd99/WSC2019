@@ -11,7 +11,7 @@ namespace WSC2019.Model
 {
     using System;
     
-    public partial class SP_GetdgvEmergency_Result
+    public partial class SP_GetdgvRequest_Result1
     {
         public string AssetSN { get; set; }
         public string AssetName { get; set; }
@@ -23,6 +23,5 @@ namespace WSC2019.Model
         public string EmployeeID { get; set; }
         public string DepartmentLocationID { get; set; }
         public string DepartmentID { get; set; }
-        public string PriorityName { get; set; }
     }
 }

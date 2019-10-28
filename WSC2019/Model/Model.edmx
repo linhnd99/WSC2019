@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WSC2019_Session2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WSC2019_Session2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AssetGroups">
           <Key>
             <PropertyRef Name="ID" />
@@ -30,7 +30,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="EmergencyMaintenanceID" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmergencyMaintenanceID" Type="int" />
           <Property Name="PartID" Type="nvarchar" MaxLength="100" />
           <Property Name="Amount" Type="float" />
         </EntityType>
@@ -55,7 +55,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AssetID" Type="nvarchar" MaxLength="100" />
           <Property Name="PriorityID" Type="nvarchar" MaxLength="100" />
           <Property Name="DescriptionEmergency" Type="nvarchar" MaxLength="100" />
@@ -63,7 +63,7 @@
           <Property Name="EMReportDate" Type="date" />
           <Property Name="EMStartDate" Type="date" />
           <Property Name="EMEndDate" Type="date" />
-          <Property Name="EMTechnocianNote" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMTechnicianNote" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -99,7 +99,7 @@
           <Property Name="ID" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <Association Name="FK_AssetGroup">
+        <Association Name="FK_Assets_AssetGroups">
           <End Role="AssetGroups" Type="Self.AssetGroups" Multiplicity="0..1" />
           <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,19 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Assets">
-          <End Role="Assets" Type="Self.Assets" Multiplicity="0..1" />
-          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assets">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EmergencyMaintenances">
-              <PropertyRef Name="AssetID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DepartmentLocations">
+        <Association Name="FK_Assets_DeparmentLocations">
           <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="0..1" />
           <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,31 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Departments">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
-          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DepartmentLocations">
-              <PropertyRef Name="DepartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmergencyMaintenances">
-          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="0..1" />
-          <End Role="ChangedParts" Type="Self.ChangedParts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmergencyMaintenances">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ChangedParts">
-              <PropertyRef Name="EmergencyMaintenanceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employees">
+        <Association Name="FK_Assets_Employee">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
           <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -171,19 +135,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Locations">
-          <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
-          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="*" />
+        <Association Name="FK_ChangedParts_EmergencyMaintenances">
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="0..1" />
+          <End Role="ChangedParts" Type="Self.ChangedParts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Locations">
+            <Principal Role="EmergencyMaintenances">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="DepartmentLocations">
-              <PropertyRef Name="LocationID" />
+            <Dependent Role="ChangedParts">
+              <PropertyRef Name="EmergencyMaintenanceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Parts">
+        <Association Name="FK_ChangedParts_Parts">
           <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
           <End Role="ChangedParts" Type="Self.ChangedParts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -195,7 +159,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Priorities">
+        <Association Name="FK_DepartmentLocations_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepartmentLocations">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentLocations_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+          <End Role="DepartmentLocations" Type="Self.DepartmentLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepartmentLocations">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmergencyMaintenances_Assets">
+          <End Role="Assets" Type="Self.Assets" Multiplicity="0..1" />
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assets">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmergencyMaintenances">
+              <PropertyRef Name="AssetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmergencyMaintenances_Priorities">
           <End Role="Priorities" Type="Self.Priorities" Multiplicity="0..1" />
           <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,14 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="countNumberEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="assetSN" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="NumberEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="assetSN" Type="nvarchar" Mode="In" />
-          <Parameter Name="username" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="SP_GetdgvEmergency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SP_GetdgvRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="WSC2019_Session2ModelStoreContainer">
@@ -228,45 +221,44 @@
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Priorities" EntityType="Self.Priorities" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AssetGroup" Association="Self.FK_AssetGroup">
+          <AssociationSet Name="FK_Assets_AssetGroups" Association="Self.FK_Assets_AssetGroups">
             <End Role="AssetGroups" EntitySet="AssetGroups" />
             <End Role="Assets" EntitySet="Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_Assets" Association="Self.FK_Assets">
-            <End Role="Assets" EntitySet="Assets" />
-            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DepartmentLocations" Association="Self.FK_DepartmentLocations">
+          <AssociationSet Name="FK_Assets_DeparmentLocations" Association="Self.FK_Assets_DeparmentLocations">
             <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
             <End Role="Assets" EntitySet="Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_Departments" Association="Self.FK_Departments">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmergencyMaintenances" Association="Self.FK_EmergencyMaintenances">
-            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
-            <End Role="ChangedParts" EntitySet="ChangedParts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employees" Association="Self.FK_Employees">
+          <AssociationSet Name="FK_Assets_Employee" Association="Self.FK_Assets_Employee">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Assets" EntitySet="Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_Locations" Association="Self.FK_Locations">
-            <End Role="Locations" EntitySet="Locations" />
-            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          <AssociationSet Name="FK_ChangedParts_EmergencyMaintenances" Association="Self.FK_ChangedParts_EmergencyMaintenances">
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+            <End Role="ChangedParts" EntitySet="ChangedParts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Parts" Association="Self.FK_Parts">
+          <AssociationSet Name="FK_ChangedParts_Parts" Association="Self.FK_ChangedParts_Parts">
             <End Role="Parts" EntitySet="Parts" />
             <End Role="ChangedParts" EntitySet="ChangedParts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Priorities" Association="Self.FK_Priorities">
+          <AssociationSet Name="FK_DepartmentLocations_Departments" Association="Self.FK_DepartmentLocations_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentLocations_Locations" Association="Self.FK_DepartmentLocations_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmergencyMaintenances_Assets" Association="Self.FK_EmergencyMaintenances_Assets">
+            <End Role="Assets" EntitySet="Assets" />
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmergencyMaintenances_Priorities" Association="Self.FK_EmergencyMaintenances_Priorities">
             <End Role="Priorities" EntitySet="Priorities" />
             <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WSC2019_Session2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -276,7 +268,7 @@
           </Key>
           <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Assets" Relationship="Self.FK_AssetGroup" FromRole="AssetGroups" ToRole="Assets" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK_Assets_AssetGroups" FromRole="AssetGroups" ToRole="Assets" />
         </EntityType>
         <EntityType Name="Asset">
           <Key>
@@ -290,21 +282,21 @@
           <Property Name="AssetGroupID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="WarrantyDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="AssetGroup" Relationship="Self.FK_AssetGroup" FromRole="Assets" ToRole="AssetGroups" />
-          <NavigationProperty Name="EmergencyMaintenances" Relationship="Self.FK_Assets" FromRole="Assets" ToRole="EmergencyMaintenances" />
-          <NavigationProperty Name="DepartmentLocation" Relationship="Self.FK_DepartmentLocations" FromRole="Assets" ToRole="DepartmentLocations" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employees" FromRole="Assets" ToRole="Employees" />
+          <NavigationProperty Name="AssetGroup" Relationship="Self.FK_Assets_AssetGroups" FromRole="Assets" ToRole="AssetGroups" />
+          <NavigationProperty Name="DepartmentLocation" Relationship="Self.FK_Assets_DeparmentLocations" FromRole="Assets" ToRole="DepartmentLocations" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Assets_Employee" FromRole="Assets" ToRole="Employees" />
+          <NavigationProperty Name="EmergencyMaintenances" Relationship="Self.FK_EmergencyMaintenances_Assets" FromRole="Assets" ToRole="EmergencyMaintenances" />
         </EntityType>
         <EntityType Name="ChangedPart">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmergencyMaintenanceID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmergencyMaintenanceID" Type="Int32" />
           <Property Name="PartID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Amount" Type="Double" />
-          <NavigationProperty Name="EmergencyMaintenance" Relationship="Self.FK_EmergencyMaintenances" FromRole="ChangedParts" ToRole="EmergencyMaintenances" />
-          <NavigationProperty Name="Part" Relationship="Self.FK_Parts" FromRole="ChangedParts" ToRole="Parts" />
+          <NavigationProperty Name="EmergencyMaintenance" Relationship="Self.FK_ChangedParts_EmergencyMaintenances" FromRole="ChangedParts" ToRole="EmergencyMaintenances" />
+          <NavigationProperty Name="Part" Relationship="Self.FK_ChangedParts_Parts" FromRole="ChangedParts" ToRole="Parts" />
         </EntityType>
         <EntityType Name="DepartmentLocation">
           <Key>
@@ -315,9 +307,9 @@
           <Property Name="LocationID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Assets" Relationship="Self.FK_DepartmentLocations" FromRole="DepartmentLocations" ToRole="Assets" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Departments" FromRole="DepartmentLocations" ToRole="Departments" />
-          <NavigationProperty Name="Location" Relationship="Self.FK_Locations" FromRole="DepartmentLocations" ToRole="Locations" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK_Assets_DeparmentLocations" FromRole="DepartmentLocations" ToRole="Assets" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_DepartmentLocations_Departments" FromRole="DepartmentLocations" ToRole="Departments" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_DepartmentLocations_Locations" FromRole="DepartmentLocations" ToRole="Locations" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -325,13 +317,13 @@
           </Key>
           <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DepartmentLocations" Relationship="Self.FK_Departments" FromRole="Departments" ToRole="DepartmentLocations" />
+          <NavigationProperty Name="DepartmentLocations" Relationship="Self.FK_DepartmentLocations_Departments" FromRole="Departments" ToRole="DepartmentLocations" />
         </EntityType>
         <EntityType Name="EmergencyMaintenance">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AssetID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PriorityID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DescriptionEmergency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -339,10 +331,10 @@
           <Property Name="EMReportDate" Type="DateTime" Precision="0" />
           <Property Name="EMStartDate" Type="DateTime" Precision="0" />
           <Property Name="EMEndDate" Type="DateTime" Precision="0" />
-          <Property Name="EMTechnocianNote" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Asset" Relationship="Self.FK_Assets" FromRole="EmergencyMaintenances" ToRole="Assets" />
-          <NavigationProperty Name="ChangedParts" Relationship="Self.FK_EmergencyMaintenances" FromRole="EmergencyMaintenances" ToRole="ChangedParts" />
-          <NavigationProperty Name="Priority" Relationship="Self.FK_Priorities" FromRole="EmergencyMaintenances" ToRole="Priorities" />
+          <Property Name="EMTechnicianNote" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Asset" Relationship="Self.FK_EmergencyMaintenances_Assets" FromRole="EmergencyMaintenances" ToRole="Assets" />
+          <NavigationProperty Name="ChangedParts" Relationship="Self.FK_ChangedParts_EmergencyMaintenances" FromRole="EmergencyMaintenances" ToRole="ChangedParts" />
+          <NavigationProperty Name="Priority" Relationship="Self.FK_EmergencyMaintenances_Priorities" FromRole="EmergencyMaintenances" ToRole="Priorities" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -355,7 +347,7 @@
           <Property Name="isAdmin" Type="Boolean" />
           <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Assets" Relationship="Self.FK_Employees" FromRole="Employees" ToRole="Assets" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK_Assets_Employee" FromRole="Employees" ToRole="Assets" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -363,7 +355,7 @@
           </Key>
           <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DepartmentLocations" Relationship="Self.FK_Locations" FromRole="Locations" ToRole="DepartmentLocations" />
+          <NavigationProperty Name="DepartmentLocations" Relationship="Self.FK_DepartmentLocations_Locations" FromRole="Locations" ToRole="DepartmentLocations" />
         </EntityType>
         <EntityType Name="Part">
           <Key>
@@ -372,7 +364,7 @@
           <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EffectiveLife" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ChangedParts" Relationship="Self.FK_Parts" FromRole="Parts" ToRole="ChangedParts" />
+          <NavigationProperty Name="ChangedParts" Relationship="Self.FK_ChangedParts_Parts" FromRole="Parts" ToRole="ChangedParts" />
         </EntityType>
         <EntityType Name="Priority">
           <Key>
@@ -380,9 +372,9 @@
           </Key>
           <Property Name="ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EmergencyMaintenances" Relationship="Self.FK_Priorities" FromRole="Priorities" ToRole="EmergencyMaintenances" />
+          <NavigationProperty Name="EmergencyMaintenances" Relationship="Self.FK_EmergencyMaintenances_Priorities" FromRole="Priorities" ToRole="EmergencyMaintenances" />
         </EntityType>
-        <Association Name="FK_AssetGroup">
+        <Association Name="FK_Assets_AssetGroups">
           <End Role="AssetGroups" Type="Self.AssetGroup" Multiplicity="0..1" />
           <End Role="Assets" Type="Self.Asset" Multiplicity="*" />
           <ReferentialConstraint>
@@ -394,19 +386,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Assets">
-          <End Role="Assets" Type="Self.Asset" Multiplicity="0..1" />
-          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Assets">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EmergencyMaintenances">
-              <PropertyRef Name="AssetID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DepartmentLocations">
+        <Association Name="FK_Assets_DeparmentLocations">
           <End Role="DepartmentLocations" Type="Self.DepartmentLocation" Multiplicity="0..1" />
           <End Role="Assets" Type="Self.Asset" Multiplicity="*" />
           <ReferentialConstraint>
@@ -418,7 +398,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employees">
+        <Association Name="FK_Assets_Employee">
           <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Assets" Type="Self.Asset" Multiplicity="*" />
           <ReferentialConstraint>
@@ -430,7 +410,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EmergencyMaintenances">
+        <Association Name="FK_EmergencyMaintenances_Assets">
+          <End Role="Assets" Type="Self.Asset" Multiplicity="0..1" />
+          <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assets">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmergencyMaintenances">
+              <PropertyRef Name="AssetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangedParts_EmergencyMaintenances">
           <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenance" Multiplicity="0..1" />
           <End Role="ChangedParts" Type="Self.ChangedPart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -442,7 +434,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Parts">
+        <Association Name="FK_ChangedParts_Parts">
           <End Role="Parts" Type="Self.Part" Multiplicity="0..1" />
           <End Role="ChangedParts" Type="Self.ChangedPart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -454,7 +446,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Departments">
+        <Association Name="FK_DepartmentLocations_Departments">
           <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
           <End Role="DepartmentLocations" Type="Self.DepartmentLocation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -466,7 +458,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Locations">
+        <Association Name="FK_DepartmentLocations_Locations">
           <End Role="Locations" Type="Self.Location" Multiplicity="0..1" />
           <End Role="DepartmentLocations" Type="Self.DepartmentLocation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -478,7 +470,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Priorities">
+        <Association Name="FK_EmergencyMaintenances_Priorities">
           <End Role="Priorities" Type="Self.Priority" Multiplicity="0..1" />
           <End Role="EmergencyMaintenances" Type="Self.EmergencyMaintenance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -501,51 +493,93 @@
           <EntitySet Name="Locations" EntityType="Self.Location" />
           <EntitySet Name="Parts" EntityType="Self.Part" />
           <EntitySet Name="Priorities" EntityType="Self.Priority" />
-          <AssociationSet Name="FK_AssetGroup" Association="Self.FK_AssetGroup">
+          <AssociationSet Name="FK_Assets_AssetGroups" Association="Self.FK_Assets_AssetGroups">
             <End Role="AssetGroups" EntitySet="AssetGroups" />
             <End Role="Assets" EntitySet="Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_Assets" Association="Self.FK_Assets">
-            <End Role="Assets" EntitySet="Assets" />
-            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DepartmentLocations" Association="Self.FK_DepartmentLocations">
+          <AssociationSet Name="FK_Assets_DeparmentLocations" Association="Self.FK_Assets_DeparmentLocations">
             <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
             <End Role="Assets" EntitySet="Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employees" Association="Self.FK_Employees">
+          <AssociationSet Name="FK_Assets_Employee" Association="Self.FK_Assets_Employee">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Assets" EntitySet="Assets" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmergencyMaintenances" Association="Self.FK_EmergencyMaintenances">
+          <AssociationSet Name="FK_EmergencyMaintenances_Assets" Association="Self.FK_EmergencyMaintenances_Assets">
+            <End Role="Assets" EntitySet="Assets" />
+            <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangedParts_EmergencyMaintenances" Association="Self.FK_ChangedParts_EmergencyMaintenances">
             <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
             <End Role="ChangedParts" EntitySet="ChangedParts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Parts" Association="Self.FK_Parts">
+          <AssociationSet Name="FK_ChangedParts_Parts" Association="Self.FK_ChangedParts_Parts">
             <End Role="Parts" EntitySet="Parts" />
             <End Role="ChangedParts" EntitySet="ChangedParts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Departments" Association="Self.FK_Departments">
+          <AssociationSet Name="FK_DepartmentLocations_Departments" Association="Self.FK_DepartmentLocations_Departments">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Locations" Association="Self.FK_Locations">
+          <AssociationSet Name="FK_DepartmentLocations_Locations" Association="Self.FK_DepartmentLocations_Locations">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="DepartmentLocations" EntitySet="DepartmentLocations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Priorities" Association="Self.FK_Priorities">
+          <AssociationSet Name="FK_EmergencyMaintenances_Priorities" Association="Self.FK_EmergencyMaintenances_Priorities">
             <End Role="Priorities" EntitySet="Priorities" />
             <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
           </AssociationSet>
           <FunctionImport Name="SP_GetdgvEmergency" ReturnType="Collection(WSC2019_Session2Model.SP_GetdgvEmergency_Result)">
-            <Parameter Name="username" Mode="In" Type="String" />
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetdgvRequest" ReturnType="Collection(WSC2019_Session2Model.SP_GetdgvEmergency_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_GetdgvEmergency_Result">
           <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="LastClosedEM" Nullable="true" />
-          <Property Type="Int32" Name="NumberOfEMs" Nullable="true" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="true" />
+          <Property Type="String" Name="EmployeeFullName" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AssetID" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EmergencyMaintenanceID" Nullable="false" />
+          <Property Type="String" Name="EmployeeID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentLocationID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PriorityName" Nullable="true" MaxLength="100" />
+          </ComplexType>
+        <ComplexType Name="SP_GetdgvRequest_Result">
+          <Property Type="String" Name="Asset_SN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Asset_Name" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Request_Date" Nullable="true" />
+          <Property Type="String" Name="Employee_Full_Name" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetdgvRequest_Result1">
+          <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="true" />
+          <Property Type="String" Name="EmployeeFullName" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AssetID" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EmergencyMaintenanceID" Nullable="false" />
+          <Property Type="String" Name="EmployeeID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentLocationID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetdgvRequest_Result2">
+          <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="true" />
+          <Property Type="String" Name="EmployeeFullName" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AssetID" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EmergencyMaintenanceID" Nullable="false" />
+          <Property Type="String" Name="EmployeeID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentLocationID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PriorityID" Nullable="false" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -615,7 +649,7 @@
                 <ScalarProperty Name="EMReportDate" ColumnName="EMReportDate" />
                 <ScalarProperty Name="EMStartDate" ColumnName="EMStartDate" />
                 <ScalarProperty Name="EMEndDate" ColumnName="EMEndDate" />
-                <ScalarProperty Name="EMTechnocianNote" ColumnName="EMTechnocianNote" />
+                <ScalarProperty Name="EMTechnicianNote" ColumnName="EMTechnicianNote" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -657,13 +691,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetdgvEmergency" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvEmergency">
-            <ResultMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetdgvRequest" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvRequest">
+          <ResultMapping>
               <ComplexTypeMapping TypeName="WSC2019_Session2Model.SP_GetdgvEmergency_Result">
                 <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
-                <ScalarProperty Name="LastClosedEM" ColumnName="LastClosedEM" />
-                <ScalarProperty Name="NumberOfEMs" ColumnName="NumberOfEMs" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="EmployeeFullName" ColumnName="EmployeeFullName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+                <ScalarProperty Name="EmergencyMaintenanceID" ColumnName="EmergencyMaintenanceID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DepartmentLocationID" ColumnName="DepartmentLocationID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -681,7 +722,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

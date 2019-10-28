@@ -63,7 +63,7 @@
           <ScalarProperty Name="EMReportDate" ColumnName="EMReportDate" />
           <ScalarProperty Name="EMStartDate" ColumnName="EMStartDate" />
           <ScalarProperty Name="EMEndDate" ColumnName="EMEndDate" />
-          <ScalarProperty Name="EMTechnocianNote" ColumnName="EMTechnocianNote" />
+          <ScalarProperty Name="EMTechnicianNote" ColumnName="EMTechnicianNote" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -105,13 +105,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SP_GetdgvEmergency" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvEmergency">
+    <FunctionImportMapping FunctionImportName="SP_GetdgvRequest" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvRequest">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WSC2019_Session2Model.SP_GetdgvEmergency_Result">
           <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
           <ScalarProperty Name="AssetName" ColumnName="AssetName" />
-          <ScalarProperty Name="LastClosedEM" ColumnName="LastClosedEM" />
-          <ScalarProperty Name="NumberOfEMs" ColumnName="NumberOfEMs" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="EmployeeFullName" ColumnName="EmployeeFullName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+          <ScalarProperty Name="EmergencyMaintenanceID" ColumnName="EmergencyMaintenanceID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="DepartmentLocationID" ColumnName="DepartmentLocationID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

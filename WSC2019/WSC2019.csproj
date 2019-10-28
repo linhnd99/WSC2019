@@ -55,11 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAccessRequesting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccessRequesting.Designer.cs">
+      <DependentUpon>frmAccessRequesting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmergencyMaintenanceManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmEmergencyMaintenanceManagement.Designer.cs">
       <DependentUpon>frmEmergencyMaintenanceManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmergencyMaintenanceRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmergencyMaintenanceRequest.Designer.cs">
+      <DependentUpon>frmEmergencyMaintenanceRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -115,10 +127,30 @@
     <Compile Include="Model\SP_GetdgvEmergency_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\SP_GetdgvRequest_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SP_GetdgvRequest_Result1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SP_GetdgvRequest_Result2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session2DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Session2DataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmAccessRequesting.resx">
+      <DependentUpon>frmAccessRequesting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEmergencyMaintenanceManagement.resx">
       <DependentUpon>frmEmergencyMaintenanceManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmergencyMaintenanceRequest.resx">
+      <DependentUpon>frmEmergencyMaintenanceRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -149,6 +181,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Session2DataSet.xsc">
+      <DependentUpon>Session2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Session2DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Session2DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Session2DataSet.xss">
+      <DependentUpon>Session2DataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -156,6 +199,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

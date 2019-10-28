@@ -20,7 +20,7 @@ namespace WSC2019.Model
             this.ChangedParts = new HashSet<ChangedPart>();
         }
     
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string AssetID { get; set; }
         public string PriorityID { get; set; }
         public string DescriptionEmergency { get; set; }
@@ -28,7 +28,7 @@ namespace WSC2019.Model
         public Nullable<System.DateTime> EMReportDate { get; set; }
         public Nullable<System.DateTime> EMStartDate { get; set; }
         public Nullable<System.DateTime> EMEndDate { get; set; }
-        public string EMTechnocianNote { get; set; }
+        public string EMTechnicianNote { get; set; }
     
         public virtual Asset Asset { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

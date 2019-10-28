@@ -28,23 +28,29 @@ namespace WSC2019
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
-
             Session2Entities db = new Session2Entities();
             Employee emp = (from x in db.Employees
                            where txtPassword.Text == x.Password && txtUsername.Text == x.Username
                            select x).SingleOrDefault<Employee>();
             if (emp!=null)
             {
-                if (emp.isAdmin==true)
+                //ADMIN
+                if (emp.isAdmin==false)
                 {
                     frmEmergencyMaintenanceManagement frmNext = new frmEmergencyMaintenanceManagement();
                     frmNext.username = txtUsername.Text;
                     frmNext.ShowDialog();
                 }
+                else //USER
+                {
+                    frmAccessRequesting frmAcc = new frmAccessRequesting();
+                    frmAcc.Tag = txtUsername.Text;
+                    frmAcc.ShowDialog();
+                }
             }
             else
             {
-                MessageBox.Show("Login success");
+                MessageBox.Show("Login Failed");
             }
         }
     }
