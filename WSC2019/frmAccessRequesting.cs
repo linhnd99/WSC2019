@@ -49,7 +49,8 @@ namespace WSC2019
                 Dictionary<string, string> temp = new Dictionary<string, string>();
                 temp["AssetSN"] = dgvRequest.Rows[i].Cells["AssetSN"].Value.ToString();
                 temp["AssetName"] = dgvRequest.Rows[i].Cells["AssetName"].Value.ToString();
-                temp["RequestDate"] = dgvRequest.Rows[i].Cells["RequestDate"].Value.ToString();
+                DateTime tdate = DateTime.Parse(dgvRequest.Rows[i].Cells["RequestDate"].Value.ToString());
+                temp["RequestDate"] = tdate.ToString("yyyy/MM/dd");
                 temp["EmployeeFullName"] = dgvRequest.Rows[i].Cells["EmployeeFullName"].Value.ToString();
                 temp["Department"] = dgvRequest.Rows[i].Cells["Department"].Value.ToString();
                 temp["AssetID"] = dgvRequest.Rows[i].Cells["AssetID"].Value.ToString();
