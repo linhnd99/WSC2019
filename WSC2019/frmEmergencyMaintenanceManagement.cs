@@ -27,7 +27,19 @@ namespace WSC2019
         private void LoadDataTable()
         {
             Session2Entities db = new Session2Entities();
-            dgvEmergencyMaintenance.DataSource = from x in db.SP_GetdgvEmergency(this.username) select x;
+            dgvEmergencyMaintenance.DataSource = db.SP_GetdgvEmergency(this.username);
+            foreach (DataGridViewRow row in dgvEmergencyMaintenance.Rows)
+            {
+                string assetSN = row.Cells["AssetSN"].Value.ToString();
+                string assetName = row.Cells["AssetName"].Value.ToString();
+                string assetID = (from x in db.Assets where assetSN == x.AssetSN && assetName==x.AssetName select x.ID).SingleOrDefault<string>();
+                EmergencyMaintenance em = (from x in db.EmergencyMaintenances where assetID == x.AssetID && x.EMEndDate==null select x).FirstOrDefault<EmergencyMaintenance>();
+                if (em!=null)
+                {
+                    dgvEmergencyMaintenance.Rows[row.Index].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+
         }
 
         private void DgvEmergencyMaintenance_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -37,16 +49,22 @@ namespace WSC2019
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            frmEmergencyMaintenanceRequest frm2 = new frmEmergencyMaintenanceRequest();
             //List<object> dataSend = new List<object>();
             //dataSend.Add(dgvEmergencyMaintenance.SelectedRows[0].ToString());
             //dataSend.Add(dgvEmergencyMaintenance.SelectedRows[1].ToString());
             //int currentRow = dgvEmergencyMaintenance.CurrentRow.Index;
-            Dictionary<string, string> dataSend = new Dictionary<string, string>();
-            dataSend["AssetSN"] = dgvEmergencyMaintenance.CurrentRow.Cells[0].Value.ToString();
-            dataSend["AssetName"] = dgvEmergencyMaintenance.CurrentRow.Cells[1].Value.ToString();
-            frm2.Tag = dataSend;
-            frm2.ShowDialog();
+            try
+            {
+                frmEmergencyMaintenanceRequest frm2 = new frmEmergencyMaintenanceRequest();
+                Dictionary<string, string> dataSend = new Dictionary<string, string>();
+                dataSend["AssetSN"] = dgvEmergencyMaintenance.CurrentRow.Cells["AssetSN"].Value.ToString();
+                dataSend["AssetName"] = dgvEmergencyMaintenance.CurrentRow.Cells["AssetName"].Value.ToString();
+                frm2.Tag = dataSend;
+                frm2.ShowDialog();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString(), "Error");
+            }
         }
     }
 }

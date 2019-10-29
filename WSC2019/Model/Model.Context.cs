@@ -38,15 +38,6 @@ namespace WSC2019.Model
         public virtual DbSet<Part> Parts { get; set; }
         public virtual DbSet<Priority> Priorities { get; set; }
     
-        public virtual ObjectResult<SP_GetdgvEmergency_Result> SP_GetdgvEmergency(string username)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvEmergency_Result>("SP_GetdgvEmergency", usernameParameter);
-        }
-    
         public virtual ObjectResult<SP_GetdgvEmergency_Result> SP_GetdgvRequest(string username)
         {
             var usernameParameter = username != null ?
@@ -54,6 +45,15 @@ namespace WSC2019.Model
                 new ObjectParameter("username", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvEmergency_Result>("SP_GetdgvRequest", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetdgvEmergency_Result> SP_GetdgvEmergency(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvEmergency_Result>("SP_GetdgvEmergency", usernameParameter);
         }
     }
 }

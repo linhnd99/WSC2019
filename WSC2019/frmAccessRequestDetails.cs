@@ -44,7 +44,7 @@ namespace WSC2019
             txtNote.Text = (from x in db.EmergencyMaintenances
                             where x.ID == emID
                             select x).FirstOrDefault<EmergencyMaintenance>().EMTechnicianNote.ToString();
-            
+
 
             //Replacement Parts
             var datacb = from x in db.Parts select new {
@@ -67,21 +67,17 @@ namespace WSC2019
                             Amount = x.Amount,
                             PartName = y.Name
                         }).ToList<dynamic>();
-            int dem = 0;
+            
             foreach (dynamic o in listO)
             {
-                Dictionary<string, dynamic> row = new Dictionary<string, dynamic>();
+                Dictionary<string, string> row = new Dictionary<string, string>();
                 row["ChangedPartID"] = o.ChangedPartID;
-                row["EmergencyMaintenanceID"] = o.EmergencyMaintenanceID;
+                row["EmergencyMaintenanceID"] = o.EmergencyMaintenanceID.ToString();
                 row["PartID"] = o.PartID;
-                row["Amount"] = o.Amount;
+                row["Amount"] = o.Amount.ToString();
                 row["PartName"] = o.PartName;
-                LinkLabel action = new LinkLabel();
-                action.Text = "Remove";
-                action.Tag = dem++;
-                action.LinkClicked += new LinkLabelLinkClickedEventHandler(this.lbkRemoveClicked);
-                row["Action"] = 
-                dgvParts.Rows.Add(row);
+                row["Action"] = "Remove";
+                dgvParts.Rows.Add(row["PartName"],row["Amount"],row["Action"],row["PartID"],row["ChangedPartID"],row["EmergencyMaintenanceID"]);
             }
         }
         private void lbkRemoveClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -98,6 +94,18 @@ namespace WSC2019
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvParts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvParts.CurrentCell.ColumnIndex == 2)
+            {
+                try
+                {
+                    dgvParts.Rows[dgvParts.CurrentCell.RowIndex].Visible = false;
+                }
+                catch (Exception) { }
+            }
         }
     }
 }

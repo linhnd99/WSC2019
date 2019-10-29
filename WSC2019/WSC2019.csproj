@@ -130,6 +130,9 @@
     <Compile Include="Model\Priority.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\SP_GetdgvEmergency1_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\SP_GetdgvEmergency_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

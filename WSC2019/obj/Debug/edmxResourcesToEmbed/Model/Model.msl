@@ -110,15 +110,16 @@
         <ComplexTypeMapping TypeName="WSC2019_Session2Model.SP_GetdgvEmergency_Result">
           <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
           <ScalarProperty Name="AssetName" ColumnName="AssetName" />
-          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
-          <ScalarProperty Name="EmployeeFullName" ColumnName="EmployeeFullName" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="AssetID" ColumnName="AssetID" />
-          <ScalarProperty Name="EmergencyMaintenanceID" ColumnName="EmergencyMaintenanceID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="DepartmentLocationID" ColumnName="DepartmentLocationID" />
-          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-          <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetdgvEmergency" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvEmergency">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WSC2019_Session2Model.SP_GetdgvEmergency_Result">
+          <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
+          <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+          <ScalarProperty Name="LastClosedEM" ColumnName="LastClosedEM" />
+          <ScalarProperty Name="NumberOfEMs" ColumnName="NumberOfEMs" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

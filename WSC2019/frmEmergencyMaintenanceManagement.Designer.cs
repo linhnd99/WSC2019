@@ -31,12 +31,23 @@
             this.dgvEmergencyMaintenance = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSend = new System.Windows.Forms.Button();
+            this.AssetSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AssetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastClosedEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumberOfEMs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmergencyMaintenanceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmergencyMaintenance)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvEmergencyMaintenance
             // 
             this.dgvEmergencyMaintenance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmergencyMaintenance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AssetSN,
+            this.AssetName,
+            this.LastClosedEM,
+            this.NumberOfEMs,
+            this.EmergencyMaintenanceID});
             this.dgvEmergencyMaintenance.Location = new System.Drawing.Point(12, 70);
             this.dgvEmergencyMaintenance.Name = "dgvEmergencyMaintenance";
             this.dgvEmergencyMaintenance.Size = new System.Drawing.Size(776, 329);
@@ -62,6 +73,47 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // AssetSN
+            // 
+            this.AssetSN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AssetSN.DataPropertyName = "AssetSN";
+            this.AssetSN.HeaderText = "Asset SN";
+            this.AssetSN.Name = "AssetSN";
+            this.AssetSN.ReadOnly = true;
+            // 
+            // AssetName
+            // 
+            this.AssetName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AssetName.DataPropertyName = "AssetName";
+            this.AssetName.HeaderText = "Asset Name";
+            this.AssetName.Name = "AssetName";
+            this.AssetName.ReadOnly = true;
+            // 
+            // LastClosedEM
+            // 
+            this.LastClosedEM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LastClosedEM.DataPropertyName = "LastClosedEM";
+            this.LastClosedEM.HeaderText = "Last Closed EM";
+            this.LastClosedEM.Name = "LastClosedEM";
+            this.LastClosedEM.ReadOnly = true;
+            // 
+            // NumberOfEMs
+            // 
+            this.NumberOfEMs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NumberOfEMs.DataPropertyName = "NumberOfEMs";
+            this.NumberOfEMs.HeaderText = "Number Of EMs";
+            this.NumberOfEMs.Name = "NumberOfEMs";
+            this.NumberOfEMs.ReadOnly = true;
+            // 
+            // EmergencyMaintenanceID
+            // 
+            this.EmergencyMaintenanceID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.EmergencyMaintenanceID.DataPropertyName = "EmergencyMaintenanceID";
+            this.EmergencyMaintenanceID.HeaderText = "EmergencyMaintenanceID";
+            this.EmergencyMaintenanceID.Name = "EmergencyMaintenanceID";
+            this.EmergencyMaintenanceID.ReadOnly = true;
+            this.EmergencyMaintenanceID.Visible = false;
+            // 
             // frmEmergencyMaintenanceManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,5 +137,10 @@
         private System.Windows.Forms.DataGridView dgvEmergencyMaintenance;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AssetSN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AssetName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastClosedEM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfEMs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmergencyMaintenanceID;
     }
 }

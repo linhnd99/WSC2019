@@ -31,13 +31,7 @@ namespace WSC2019
             IEnumerable<EmergencyMaintenance> list_em = from x in db.EmergencyMaintenances
                                       where x.AssetID == asset.ID
                                       select x;
-            foreach (EmergencyMaintenance t in list_em)
-            {
-                if (t.EMEndDate==null)
-                {
-                    MessageBox.Show("EM hasn't closed", "Notification");
-                }
-            }
+            
             DepartmentLocation departmentLocation = (from x in db.DepartmentLocations
                                              where x.ID == asset.DepartmentLocationID
                                              select x).FirstOrDefault<DepartmentLocation>();

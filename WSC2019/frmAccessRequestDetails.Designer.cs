@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNote = new System.Windows.Forms.TextBox();
-            this.dpkStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dpkCompleteOn = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtAmount = new System.Windows.Forms.TextBox();
-            this.cbPartName = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnSubmit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblAssetSN = new System.Windows.Forms.Label();
-            this.lblAssetName = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblAssetName = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblAssetSN = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dpkCompleteOn = new System.Windows.Forms.DateTimePicker();
+            this.dpkStartDate = new System.Windows.Forms.DateTimePicker();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvParts = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.cbPartName = new System.Windows.Forms.ComboBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangedPartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmergencyMaintenanceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -79,166 +79,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Asset";
             // 
-            // groupBox2
+            // lblDepartment
             // 
-            this.groupBox2.Controls.Add(this.linkLabel1);
-            this.groupBox2.Controls.Add(this.dpkCompleteOn);
-            this.groupBox2.Controls.Add(this.dpkStartDate);
-            this.groupBox2.Controls.Add(this.txtNote);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(15, 76);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(779, 147);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Asset EM Repport";
+            this.lblDepartment.AutoSize = true;
+            this.lblDepartment.Location = new System.Drawing.Point(650, 25);
+            this.lblDepartment.Name = "lblDepartment";
+            this.lblDepartment.Size = new System.Drawing.Size(41, 13);
+            this.lblDepartment.TabIndex = 5;
+            this.lblDepartment.Text = "label10";
             // 
-            // groupBox3
+            // label11
             // 
-            this.groupBox3.Controls.Add(this.dgvParts);
-            this.groupBox3.Controls.Add(this.btnAdd);
-            this.groupBox3.Controls.Add(this.cbPartName);
-            this.groupBox3.Controls.Add(this.txtAmount);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Location = new System.Drawing.Point(15, 229);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(779, 178);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Replacement parts";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Start Date";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(423, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Complete On";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Technician Note";
-            // 
-            // txtNote
-            // 
-            this.txtNote.Location = new System.Drawing.Point(52, 85);
-            this.txtNote.Multiline = true;
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(683, 47);
-            this.txtNote.TabIndex = 3;
-            // 
-            // dpkStartDate
-            // 
-            this.dpkStartDate.Location = new System.Drawing.Point(62, 25);
-            this.dpkStartDate.Name = "dpkStartDate";
-            this.dpkStartDate.Size = new System.Drawing.Size(200, 20);
-            this.dpkStartDate.TabIndex = 4;
-            // 
-            // dpkCompleteOn
-            // 
-            this.dpkCompleteOn.AllowDrop = true;
-            this.dpkCompleteOn.Location = new System.Drawing.Point(497, 25);
-            this.dpkCompleteOn.Name = "dpkCompleteOn";
-            this.dpkCompleteOn.Size = new System.Drawing.Size(200, 20);
-            this.dpkCompleteOn.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Part name";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(435, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Amount";
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.Location = new System.Drawing.Point(497, 24);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(141, 20);
-            this.txtAmount.TabIndex = 8;
-            // 
-            // cbPartName
-            // 
-            this.cbPartName.FormattingEnabled = true;
-            this.cbPartName.Location = new System.Drawing.Point(67, 21);
-            this.cbPartName.Name = "cbPartName";
-            this.cbPartName.Size = new System.Drawing.Size(191, 21);
-            this.cbPartName.TabIndex = 9;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(657, 24);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(98, 23);
-            this.btnAdd.TabIndex = 10;
-            this.btnAdd.Text = "Add to list";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(260, 415);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(98, 23);
-            this.btnSubmit.TabIndex = 12;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(408, 415);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(98, 23);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "AssetSN";
-            // 
-            // lblAssetSN
-            // 
-            this.lblAssetSN.AutoSize = true;
-            this.lblAssetSN.Location = new System.Drawing.Point(64, 25);
-            this.lblAssetSN.Name = "lblAssetSN";
-            this.lblAssetSN.Size = new System.Drawing.Size(35, 13);
-            this.lblAssetSN.TabIndex = 1;
-            this.lblAssetSN.Text = "label7";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(582, 25);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(62, 13);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Department";
             // 
             // lblAssetName
             // 
@@ -258,23 +115,103 @@
             this.label9.TabIndex = 2;
             this.label9.Text = "AssetName";
             // 
-            // lblDepartment
+            // lblAssetSN
             // 
-            this.lblDepartment.AutoSize = true;
-            this.lblDepartment.Location = new System.Drawing.Point(650, 25);
-            this.lblDepartment.Name = "lblDepartment";
-            this.lblDepartment.Size = new System.Drawing.Size(41, 13);
-            this.lblDepartment.TabIndex = 5;
-            this.lblDepartment.Text = "label10";
+            this.lblAssetSN.AutoSize = true;
+            this.lblAssetSN.Location = new System.Drawing.Point(64, 25);
+            this.lblAssetSN.Name = "lblAssetSN";
+            this.lblAssetSN.Size = new System.Drawing.Size(35, 13);
+            this.lblAssetSN.TabIndex = 1;
+            this.lblAssetSN.Text = "label7";
             // 
-            // label11
+            // label6
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(582, 25);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(62, 13);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Department";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "AssetSN";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dpkCompleteOn);
+            this.groupBox2.Controls.Add(this.dpkStartDate);
+            this.groupBox2.Controls.Add(this.txtNote);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(15, 76);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(779, 147);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Asset EM Repport";
+            // 
+            // dpkCompleteOn
+            // 
+            this.dpkCompleteOn.AllowDrop = true;
+            this.dpkCompleteOn.Location = new System.Drawing.Point(497, 25);
+            this.dpkCompleteOn.Name = "dpkCompleteOn";
+            this.dpkCompleteOn.Size = new System.Drawing.Size(200, 20);
+            this.dpkCompleteOn.TabIndex = 5;
+            // 
+            // dpkStartDate
+            // 
+            this.dpkStartDate.Location = new System.Drawing.Point(62, 25);
+            this.dpkStartDate.Name = "dpkStartDate";
+            this.dpkStartDate.Size = new System.Drawing.Size(200, 20);
+            this.dpkStartDate.TabIndex = 4;
+            // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(52, 85);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(683, 47);
+            this.txtNote.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Technician Note";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(423, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Complete On";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Start Date";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgvParts);
+            this.groupBox3.Controls.Add(this.btnAdd);
+            this.groupBox3.Controls.Add(this.cbPartName);
+            this.groupBox3.Controls.Add(this.txtAmount);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(15, 229);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(779, 178);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Replacement parts";
             // 
             // dgvParts
             // 
@@ -290,6 +227,70 @@
             this.dgvParts.Name = "dgvParts";
             this.dgvParts.Size = new System.Drawing.Size(729, 89);
             this.dgvParts.TabIndex = 11;
+            this.dgvParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParts_CellClick);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(657, 24);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(98, 23);
+            this.btnAdd.TabIndex = 10;
+            this.btnAdd.Text = "Add to list";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // cbPartName
+            // 
+            this.cbPartName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPartName.FormattingEnabled = true;
+            this.cbPartName.Location = new System.Drawing.Point(67, 21);
+            this.cbPartName.Name = "cbPartName";
+            this.cbPartName.Size = new System.Drawing.Size(191, 21);
+            this.cbPartName.TabIndex = 9;
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.Location = new System.Drawing.Point(497, 24);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(141, 20);
+            this.txtAmount.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(435, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Amount";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Part name";
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(260, 415);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(98, 23);
+            this.btnSubmit.TabIndex = 12;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(408, 415);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(98, 23);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // PartName
             // 
@@ -311,9 +312,14 @@
             // 
             this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Action.DataPropertyName = "Action";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
+            this.Action.DefaultCellStyle = dataGridViewCellStyle4;
             this.Action.HeaderText = "Action";
             this.Action.Name = "Action";
             this.Action.ReadOnly = true;
+            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PartID
             // 
@@ -341,16 +347,6 @@
             this.EmergencyMaintenanceID.Name = "EmergencyMaintenanceID";
             this.EmergencyMaintenanceID.ReadOnly = true;
             this.EmergencyMaintenanceID.Visible = false;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(295, 59);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
             // 
             // frmAccessRequestDetails
             // 
@@ -403,10 +399,9 @@
         private System.Windows.Forms.DataGridView dgvParts;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewLinkColumn Action;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Action;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangedPartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmergencyMaintenanceID;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

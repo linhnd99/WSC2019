@@ -11,7 +11,7 @@ namespace WSC2019.Model
 {
     using System;
     
-    public partial class SP_GetdgvEmergency_Result
+    public partial class SP_GetdgvEmergency1_Result
     {
         public string AssetSN { get; set; }
         public string AssetName { get; set; }
