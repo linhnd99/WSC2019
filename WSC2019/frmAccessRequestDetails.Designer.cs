@@ -57,6 +57,7 @@
             this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangedPartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmergencyMaintenanceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -80,6 +81,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabel1);
             this.groupBox2.Controls.Add(this.dpkCompleteOn);
             this.groupBox2.Controls.Add(this.dpkStartDate);
             this.groupBox2.Controls.Add(this.txtNote);
@@ -152,6 +154,7 @@
             // 
             // dpkCompleteOn
             // 
+            this.dpkCompleteOn.AllowDrop = true;
             this.dpkCompleteOn.Location = new System.Drawing.Point(497, 25);
             this.dpkCompleteOn.Name = "dpkCompleteOn";
             this.dpkCompleteOn.Size = new System.Drawing.Size(200, 20);
@@ -217,6 +220,7 @@
             this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label6
             // 
@@ -338,6 +342,16 @@
             this.EmergencyMaintenanceID.ReadOnly = true;
             this.EmergencyMaintenanceID.Visible = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(295, 59);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "linkLabel1";
+            // 
             // frmAccessRequestDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,5 +407,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangedPartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmergencyMaintenanceID;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

@@ -97,9 +97,10 @@ namespace WSC2019
             {
                 frmAccessRequestDetails frm2 = new frmAccessRequestDetails();
                 Dictionary<string, string> pack = new Dictionary<string, string>();
-                pack["AssetSN"] = dgvRequest.CurrentRow.Cells["AssetSN"].ToString();
-                pack["AssetName"] = dgvRequest.CurrentRow.Cells["AssetName"].ToString();
-                pack["Department"] = dgvRequest.CurrentRow.Cells["Department"].ToString();
+                pack["AssetSN"] = dgvRequest.CurrentRow.Cells["AssetSN"].Value.ToString();
+                pack["AssetName"] = dgvRequest.CurrentRow.Cells["AssetName"].Value.ToString();
+                pack["Department"] = dgvRequest.CurrentRow.Cells["Department"].Value.ToString();
+                pack["EmergencyMaintenanceID"] = dgvRequest.CurrentRow.Cells["EmergencyMaintenanceID"].Value.ToString();
                 frm2.Tag = pack;
                 frm2.ShowDialog(); 
             }
