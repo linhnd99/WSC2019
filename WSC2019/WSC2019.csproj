@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAccessRequestDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccessRequestDetails.Designer.cs">
+      <DependentUpon>frmAccessRequestDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAccessRequesting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Session2DataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmAccessRequestDetails.resx">
+      <DependentUpon>frmAccessRequestDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAccessRequesting.resx">
       <DependentUpon>frmAccessRequesting.cs</DependentUpon>
     </EmbeddedResource>

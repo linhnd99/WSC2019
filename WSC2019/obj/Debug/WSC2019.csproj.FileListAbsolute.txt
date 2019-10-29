@@ -15,3 +15,4 @@ C:\Users\linhnd\Desktop\WSC2019\WSC2019\obj\Debug\WSC2019.frmEmergencyMaintenanc
 C:\Users\linhnd\Desktop\WSC2019\WSC2019\obj\Debug\WSC2019.frmLogin.resources
 C:\Users\linhnd\Desktop\WSC2019\WSC2019\obj\Debug\WSC2019.frmEmergencyMaintenanceRequest.resources
 C:\Users\linhnd\Desktop\WSC2019\WSC2019\obj\Debug\WSC2019.frmAccessRequesting.resources
+C:\Users\linhnd\Desktop\WSC2019\WSC2019\obj\Debug\WSC2019.frmAccessRequestDetails.resources

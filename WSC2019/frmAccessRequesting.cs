@@ -38,13 +38,17 @@ namespace WSC2019
 
         private void frmAccessRequesting_Load(object sender, EventArgs e)
         {
+            LoadDataTable();
+        }
+        private void LoadDataTable()
+        {
             Session2Entities db = new Session2Entities();
             //Get data at the first
             dgvRequest.DataSource = db.SP_GetdgvRequest(this.Tag.ToString());
-            
+
             //convert element of DataSource to Dic<string,string>
             List<Dictionary<string, string>> listO = new List<Dictionary<string, string>>();
-            for (int i=0;i<dgvRequest.Rows.Count;i++)
+            for (int i = 0; i < dgvRequest.Rows.Count; i++)
             {
                 Dictionary<string, string> temp = new Dictionary<string, string>();
                 temp["AssetSN"] = dgvRequest.Rows[i].Cells["AssetSN"].Value.ToString();
@@ -63,10 +67,10 @@ namespace WSC2019
             }
             //sort Dic<string,string>
             listO.Sort(CompareDynamic);
-            
+
             //set Dic<string, string which has just sorted to DataSource
             int ii = 0;
-            foreach (Dictionary<string,string> temp in listO)
+            foreach (Dictionary<string, string> temp in listO)
             {
                 dgvRequest.Rows[ii].Cells["AssetSN"].Value = temp["AssetSN"];
                 dgvRequest.Rows[ii].Cells["AssetName"].Value = temp["AssetName"];
@@ -81,12 +85,24 @@ namespace WSC2019
                 dgvRequest.Rows[ii].Cells["PriorityName"].Value = temp["PriorityName"];
                 ii++;
             }
-
         }
 
         private void btnManageRequest_Click(object sender, EventArgs e)
         {
-
+            if (dgvRequest.CurrentRow.Cells["AssetID"].Value==null)
+            {
+                MessageBox.Show("Records invalid", "Notification");
+            }
+            else
+            {
+                frmAccessRequestDetails frm2 = new frmAccessRequestDetails();
+                Dictionary<string, string> pack = new Dictionary<string, string>();
+                pack["AssetSN"] = dgvRequest.CurrentRow.Cells["AssetSN"].ToString();
+                pack["AssetName"] = dgvRequest.CurrentRow.Cells["AssetName"].ToString();
+                pack["Department"] = dgvRequest.CurrentRow.Cells["Department"].ToString();
+                frm2.Tag = pack;
+                frm2.ShowDialog(); 
+            }
         }
 
         private void dgvRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
