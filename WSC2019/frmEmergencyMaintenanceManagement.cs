@@ -63,7 +63,7 @@ namespace WSC2019
                 frm2.ShowDialog();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString(), "Error");
+                MessageBox.Show(ex.ToString(), "Error"); 
             }
         }
     }
