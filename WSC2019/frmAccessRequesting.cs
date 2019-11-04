@@ -22,7 +22,7 @@ namespace WSC2019
         public static int CompareDynamic(Dictionary<string, string> a, Dictionary<string, string> b)
         {
             Dictionary<string, int> map = new Dictionary<string, int>() {
-                ["Very high"] = 1,
+                ["Very High"] = 1,
                 ["High"] = 2,
                 ["Normal"] = 3
             };
@@ -44,7 +44,7 @@ namespace WSC2019
         {
             Session2Entities db = new Session2Entities();
             //Get data at the first
-            dgvRequest.DataSource = db.SP_GetdgvRequest(this.Tag.ToString());
+            dgvRequest.DataSource = db.SP_GetdgvRequest();
 
             //convert element of DataSource to Dic<string,string>
             List<Dictionary<string, string>> listO = new List<Dictionary<string, string>>();
@@ -53,8 +53,15 @@ namespace WSC2019
                 Dictionary<string, string> temp = new Dictionary<string, string>();
                 temp["AssetSN"] = dgvRequest.Rows[i].Cells["AssetSN"].Value.ToString();
                 temp["AssetName"] = dgvRequest.Rows[i].Cells["AssetName"].Value.ToString();
-                DateTime tdate = DateTime.Parse(dgvRequest.Rows[i].Cells["RequestDate"].Value.ToString());
-                temp["RequestDate"] = tdate.ToString("yyyy/MM/dd");
+                if (dgvRequest.Rows[i].Cells["RequestDate"].Value == null)
+                {
+                    temp["RequestDate"] = "--";
+                }
+                else
+                {
+                    DateTime tdate = DateTime.Parse(dgvRequest.Rows[i].Cells["RequestDate"].Value.ToString());
+                    temp["RequestDate"] = tdate.ToString("yyyy/MM/dd");
+                }
                 temp["EmployeeFullName"] = dgvRequest.Rows[i].Cells["EmployeeFullName"].Value.ToString();
                 temp["Department"] = dgvRequest.Rows[i].Cells["Department"].Value.ToString();
                 temp["AssetID"] = dgvRequest.Rows[i].Cells["AssetID"].Value.ToString();

@@ -30,7 +30,7 @@ namespace WSC2019
 
             Session2Entities db = new Session2Entities();
             Employee emp = (from x in db.Employees
-                           where txtPassword.Text == x.Password && txtUsername.Text == x.Username
+                           where txtPassword.Text == x.Password && txtUsername.Text == x.Usernname
                            select x).SingleOrDefault<Employee>();
             if (emp!=null)
             {

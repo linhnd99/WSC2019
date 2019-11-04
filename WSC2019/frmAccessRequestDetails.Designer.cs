@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -45,6 +45,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvParts = new System.Windows.Forms.DataGridView();
+            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangedPartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmergencyMaintenanceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cbPartName = new System.Windows.Forms.ComboBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
@@ -52,12 +58,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChangedPartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmergencyMaintenanceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -215,6 +215,7 @@
             // 
             // dgvParts
             // 
+            this.dgvParts.AllowUserToAddRows = false;
             this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PartName,
@@ -228,6 +229,63 @@
             this.dgvParts.Size = new System.Drawing.Size(729, 89);
             this.dgvParts.TabIndex = 11;
             this.dgvParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParts_CellClick);
+            this.dgvParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParts_CellContentClick);
+            // 
+            // PartName
+            // 
+            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartName.DataPropertyName = "PartName";
+            this.PartName.HeaderText = "Partname";
+            this.PartName.Name = "PartName";
+            this.PartName.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Action.DataPropertyName = "Action";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            this.Action.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PartID
+            // 
+            this.PartID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartID.DataPropertyName = "PartID";
+            this.PartID.HeaderText = "PartID";
+            this.PartID.Name = "PartID";
+            this.PartID.ReadOnly = true;
+            this.PartID.Visible = false;
+            // 
+            // ChangedPartID
+            // 
+            this.ChangedPartID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ChangedPartID.DataPropertyName = "ChangedPartID";
+            this.ChangedPartID.HeaderText = "ChangedPartID";
+            this.ChangedPartID.Name = "ChangedPartID";
+            this.ChangedPartID.ReadOnly = true;
+            this.ChangedPartID.Visible = false;
+            // 
+            // EmergencyMaintenanceID
+            // 
+            this.EmergencyMaintenanceID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.EmergencyMaintenanceID.DataPropertyName = "EmergencyMaintenanceID";
+            this.EmergencyMaintenanceID.HeaderText = "EmergencyMaintenanceID";
+            this.EmergencyMaintenanceID.Name = "EmergencyMaintenanceID";
+            this.EmergencyMaintenanceID.ReadOnly = true;
+            this.EmergencyMaintenanceID.Visible = false;
             // 
             // btnAdd
             // 
@@ -281,6 +339,7 @@
             this.btnSubmit.TabIndex = 12;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnCancel
             // 
@@ -291,62 +350,6 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // PartName
-            // 
-            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PartName.DataPropertyName = "PartName";
-            this.PartName.HeaderText = "Partname";
-            this.PartName.Name = "PartName";
-            this.PartName.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // Action
-            // 
-            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Action.DataPropertyName = "Action";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
-            this.Action.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Action.HeaderText = "Action";
-            this.Action.Name = "Action";
-            this.Action.ReadOnly = true;
-            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PartID
-            // 
-            this.PartID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PartID.DataPropertyName = "PartID";
-            this.PartID.HeaderText = "PartID";
-            this.PartID.Name = "PartID";
-            this.PartID.ReadOnly = true;
-            this.PartID.Visible = false;
-            // 
-            // ChangedPartID
-            // 
-            this.ChangedPartID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ChangedPartID.DataPropertyName = "ChangedPartID";
-            this.ChangedPartID.HeaderText = "ChangedPartID";
-            this.ChangedPartID.Name = "ChangedPartID";
-            this.ChangedPartID.ReadOnly = true;
-            this.ChangedPartID.Visible = false;
-            // 
-            // EmergencyMaintenanceID
-            // 
-            this.EmergencyMaintenanceID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.EmergencyMaintenanceID.DataPropertyName = "EmergencyMaintenanceID";
-            this.EmergencyMaintenanceID.HeaderText = "EmergencyMaintenanceID";
-            this.EmergencyMaintenanceID.Name = "EmergencyMaintenanceID";
-            this.EmergencyMaintenanceID.ReadOnly = true;
-            this.EmergencyMaintenanceID.Visible = false;
             // 
             // frmAccessRequestDetails
             // 

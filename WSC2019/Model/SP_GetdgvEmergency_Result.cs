@@ -17,5 +17,6 @@ namespace WSC2019.Model
         public string AssetName { get; set; }
         public Nullable<System.DateTime> LastClosedEM { get; set; }
         public Nullable<int> NumberOfEMs { get; set; }
+        public string AssetID { get; set; }
     }
 }

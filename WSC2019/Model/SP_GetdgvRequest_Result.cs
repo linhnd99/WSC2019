@@ -13,10 +13,16 @@ namespace WSC2019.Model
     
     public partial class SP_GetdgvRequest_Result
     {
-        public string Asset_SN { get; set; }
-        public string Asset_Name { get; set; }
-        public Nullable<System.DateTime> Request_Date { get; set; }
-        public string Employee_Full_Name { get; set; }
+        public string AssetSN { get; set; }
+        public string AssetName { get; set; }
+        public string EmployeeFullName { get; set; }
         public string Department { get; set; }
+        public string AssetID { get; set; }
+        public int EmergencyMaintenanceID { get; set; }
+        public string EmployeeID { get; set; }
+        public string DepartmentLocationID { get; set; }
+        public string DepartmentID { get; set; }
+        public string PriorityName { get; set; }
+        public Nullable<System.DateTime> RequestDate { get; set; }
     }
 }

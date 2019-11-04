@@ -56,6 +56,7 @@
             // 
             // dgvRequest
             // 
+            this.dgvRequest.AllowUserToAddRows = false;
             this.dgvRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRequest.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AssetSN,
@@ -132,6 +133,7 @@
             this.AssetID.HeaderText = "AssetID";
             this.AssetID.Name = "AssetID";
             this.AssetID.ReadOnly = true;
+            this.AssetID.Visible = false;
             // 
             // EmergencyMaintenanceID
             // 
@@ -176,6 +178,7 @@
             this.PriorityName.HeaderText = "Priority Name";
             this.PriorityName.Name = "PriorityName";
             this.PriorityName.ReadOnly = true;
+            this.PriorityName.Visible = false;
             // 
             // frmAccessRequesting
             // 

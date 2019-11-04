@@ -35,7 +35,6 @@
             this.AssetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastClosedEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberOfEMs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmergencyMaintenanceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmergencyMaintenance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,8 +45,7 @@
             this.AssetSN,
             this.AssetName,
             this.LastClosedEM,
-            this.NumberOfEMs,
-            this.EmergencyMaintenanceID});
+            this.NumberOfEMs});
             this.dgvEmergencyMaintenance.Location = new System.Drawing.Point(12, 70);
             this.dgvEmergencyMaintenance.Name = "dgvEmergencyMaintenance";
             this.dgvEmergencyMaintenance.Size = new System.Drawing.Size(776, 329);
@@ -105,15 +103,6 @@
             this.NumberOfEMs.Name = "NumberOfEMs";
             this.NumberOfEMs.ReadOnly = true;
             // 
-            // EmergencyMaintenanceID
-            // 
-            this.EmergencyMaintenanceID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.EmergencyMaintenanceID.DataPropertyName = "EmergencyMaintenanceID";
-            this.EmergencyMaintenanceID.HeaderText = "EmergencyMaintenanceID";
-            this.EmergencyMaintenanceID.Name = "EmergencyMaintenanceID";
-            this.EmergencyMaintenanceID.ReadOnly = true;
-            this.EmergencyMaintenanceID.Visible = false;
-            // 
             // frmEmergencyMaintenanceManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,6 +130,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AssetName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastClosedEM;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfEMs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmergencyMaintenanceID;
     }
 }
