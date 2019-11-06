@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.btnAdmin = new System.Windows.Forms.Button();
+            this.btnLoginUser = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -78,11 +80,33 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
+            // btnAdmin
+            // 
+            this.btnAdmin.Location = new System.Drawing.Point(427, 127);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(126, 23);
+            this.btnAdmin.TabIndex = 5;
+            this.btnAdmin.Text = "Login as Admin";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
+            // 
+            // btnLoginUser
+            // 
+            this.btnLoginUser.Location = new System.Drawing.Point(427, 166);
+            this.btnLoginUser.Name = "btnLoginUser";
+            this.btnLoginUser.Size = new System.Drawing.Size(126, 23);
+            this.btnLoginUser.TabIndex = 6;
+            this.btnLoginUser.Text = "Login as User";
+            this.btnLoginUser.UseVisualStyleBackColor = true;
+            this.btnLoginUser.Click += new System.EventHandler(this.btnLoginUser_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 306);
+            this.Controls.Add(this.btnLoginUser);
+            this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -103,6 +127,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.Button btnLoginUser;
     }
 }
 

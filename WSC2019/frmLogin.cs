@@ -25,26 +25,34 @@ namespace WSC2019
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            Login(txtUsername.Text, txtPassword.Text);
+        }
 
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            Login("admin", "admin");
+        }
+
+
+        private void Login(string strusername, string strpassword)
+        {
             Session2Entities db = new Session2Entities();
             Employee emp = (from x in db.Employees
-                           where txtPassword.Text == x.Password && txtUsername.Text == x.Usernname
-                           select x).SingleOrDefault<Employee>();
-            if (emp!=null)
+                            where strpassword == x.Password && strusername == x.Usernname
+                            select x).SingleOrDefault<Employee>();
+            if (emp != null)
             {
                 //ADMIN
-                if (emp.isAdmin==false)
+                if (emp.isAdmin == false)
                 {
                     frmEmergencyMaintenanceManagement frmNext = new frmEmergencyMaintenanceManagement();
-                    frmNext.username = txtUsername.Text;
+                    frmNext.username = strusername;
                     frmNext.ShowDialog();
                 }
                 else //USER
                 {
                     frmAccessRequesting frmAcc = new frmAccessRequesting();
-                    frmAcc.Tag = txtUsername.Text;
+                    frmAcc.Tag = strusername;
                     frmAcc.ShowDialog();
                 }
             }
@@ -52,6 +60,11 @@ namespace WSC2019
             {
                 MessageBox.Show("Login Failed");
             }
+        }
+
+        private void btnLoginUser_Click(object sender, EventArgs e)
+        {
+            Login("linh", "linh");
         }
     }
 }

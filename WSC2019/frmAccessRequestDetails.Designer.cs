@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -37,8 +37,6 @@
             this.lblAssetSN = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dpkCompleteOn = new System.Windows.Forms.DateTimePicker();
-            this.dpkStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +56,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.mktCompleteOn = new System.Windows.Forms.MaskedTextBox();
+            this.mktStartDate = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -135,8 +135,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dpkCompleteOn);
-            this.groupBox2.Controls.Add(this.dpkStartDate);
+            this.groupBox2.Controls.Add(this.mktStartDate);
+            this.groupBox2.Controls.Add(this.mktCompleteOn);
             this.groupBox2.Controls.Add(this.txtNote);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -148,21 +148,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Asset EM Repport";
             // 
-            // dpkCompleteOn
-            // 
-            this.dpkCompleteOn.AllowDrop = true;
-            this.dpkCompleteOn.Location = new System.Drawing.Point(497, 25);
-            this.dpkCompleteOn.Name = "dpkCompleteOn";
-            this.dpkCompleteOn.Size = new System.Drawing.Size(200, 20);
-            this.dpkCompleteOn.TabIndex = 5;
-            // 
-            // dpkStartDate
-            // 
-            this.dpkStartDate.Location = new System.Drawing.Point(62, 25);
-            this.dpkStartDate.Name = "dpkStartDate";
-            this.dpkStartDate.Size = new System.Drawing.Size(200, 20);
-            this.dpkStartDate.TabIndex = 4;
-            // 
             // txtNote
             // 
             this.txtNote.Location = new System.Drawing.Point(52, 85);
@@ -170,6 +155,7 @@
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(683, 47);
             this.txtNote.TabIndex = 3;
+            this.txtNote.TextChanged += new System.EventHandler(this.txtNote_TextChanged);
             // 
             // label3
             // 
@@ -251,9 +237,9 @@
             // 
             this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Action.DataPropertyName = "Action";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            this.Action.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            this.Action.DefaultCellStyle = dataGridViewCellStyle3;
             this.Action.HeaderText = "Action";
             this.Action.Name = "Action";
             this.Action.ReadOnly = true;
@@ -351,6 +337,26 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // mktCompleteOn
+            // 
+            this.mktCompleteOn.Location = new System.Drawing.Point(521, 25);
+            this.mktCompleteOn.Mask = "00/00/0000";
+            this.mktCompleteOn.Name = "mktCompleteOn";
+            this.mktCompleteOn.Size = new System.Drawing.Size(100, 20);
+            this.mktCompleteOn.TabIndex = 6;
+            this.mktCompleteOn.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.mktCompleteOn.ValidatingType = typeof(System.DateTime);
+            // 
+            // mktStartDate
+            // 
+            this.mktStartDate.Location = new System.Drawing.Point(74, 25);
+            this.mktStartDate.Mask = "00/00/0000";
+            this.mktStartDate.Name = "mktStartDate";
+            this.mktStartDate.Size = new System.Drawing.Size(100, 20);
+            this.mktStartDate.TabIndex = 7;
+            this.mktStartDate.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.mktStartDate.ValidatingType = typeof(System.DateTime);
+            // 
             // frmAccessRequestDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,8 +385,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dpkCompleteOn;
-        private System.Windows.Forms.DateTimePicker dpkStartDate;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -406,5 +410,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangedPartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmergencyMaintenanceID;
+        private System.Windows.Forms.MaskedTextBox mktCompleteOn;
+        private System.Windows.Forms.MaskedTextBox mktStartDate;
     }
 }

@@ -15,6 +15,7 @@ namespace WSC2019.Model
     {
         public string AssetSN { get; set; }
         public string AssetName { get; set; }
+        public Nullable<System.DateTime> RequestDate { get; set; }
         public string EmployeeFullName { get; set; }
         public string Department { get; set; }
         public string AssetID { get; set; }
@@ -23,6 +24,5 @@ namespace WSC2019.Model
         public string DepartmentLocationID { get; set; }
         public string DepartmentID { get; set; }
         public string PriorityName { get; set; }
-        public Nullable<System.DateTime> RequestDate { get; set; }
     }
 }

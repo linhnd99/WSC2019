@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Session2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="WSC2019_Session2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="AssetGroup">
     <Key>
       <PropertyRef Name="ID" />
@@ -267,17 +267,11 @@
       <End Role="Priorities" EntitySet="Priorities" />
       <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
     </AssociationSet>
-    <FunctionImport Name="SP_GetdgvEmergency" ReturnType="Collection(Session2Model.SP_GetdgvEmergency_Result)">
+    <FunctionImport Name="SP_GetdgvEmergency" ReturnType="Collection(WSC2019_Session2Model.SP_GetdgvEmergency_Result)">
       <Parameter Name="username" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="SP_GetdgvRequest" ReturnType="Collection(Session2Model.SP_GetdgvRequest_Result)" />
+    <FunctionImport Name="SP_GetdgvRequest" ReturnType="Collection(WSC2019_Session2Model.SP_GetdgvRequest_Result)" />
   </EntityContainer>
-  <ComplexType Name="sp_loadReplaceDepartment_Result">
-    <Property Type="String" Name="ID" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
-    <Property Type="Double" Name="Amount" Nullable="true" />
-    <Property Type="String" Name="Action" Nullable="false" MaxLength="6" />
-  </ComplexType>
   <ComplexType Name="SP_GetdgvEmergency_Result">
     <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
@@ -288,6 +282,7 @@
   <ComplexType Name="SP_GetdgvRequest_Result">
     <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="RequestDate" Nullable="true" />
     <Property Type="String" Name="EmployeeFullName" Nullable="true" MaxLength="200" />
     <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="AssetID" Nullable="false" MaxLength="100" />
@@ -296,6 +291,5 @@
     <Property Type="String" Name="DepartmentLocationID" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="PriorityName" Nullable="true" MaxLength="100" />
-    <Property Type="DateTime" Name="RequestDate" Nullable="true" />
   </ComplexType>
 </Schema>

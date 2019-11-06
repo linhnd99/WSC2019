@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Session2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WSC2019_Session2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AssetGroups">
           <Key>
             <PropertyRef Name="ID" />
@@ -211,7 +211,7 @@
           <Parameter Name="username" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_GetdgvRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Session2ModelStoreContainer">
+        <EntityContainer Name="WSC2019_Session2ModelStoreContainer">
           <EntitySet Name="AssetGroups" EntityType="Self.AssetGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChangedParts" EntityType="Self.ChangedParts" Schema="dbo" store:Type="Tables" />
@@ -259,10 +259,11 @@
             <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Session2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WSC2019_Session2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AssetGroup">
           <Key>
             <PropertyRef Name="ID" />
@@ -530,17 +531,11 @@
             <End Role="Priorities" EntitySet="Priorities" />
             <End Role="EmergencyMaintenances" EntitySet="EmergencyMaintenances" />
           </AssociationSet>
-          <FunctionImport Name="SP_GetdgvEmergency" ReturnType="Collection(Session2Model.SP_GetdgvEmergency_Result)">
-          <Parameter Name="username" Mode="In" Type="String" />
+          <FunctionImport Name="SP_GetdgvEmergency" ReturnType="Collection(WSC2019_Session2Model.SP_GetdgvEmergency_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetdgvRequest" ReturnType="Collection(Session2Model.SP_GetdgvRequest_Result)" />
+          <FunctionImport Name="SP_GetdgvRequest" ReturnType="Collection(WSC2019_Session2Model.SP_GetdgvRequest_Result)" />
         </EntityContainer>
-        <ComplexType Name="sp_loadReplaceDepartment_Result">
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
-          <Property Type="Double" Name="Amount" Nullable="true" />
-          <Property Type="String" Name="Action" Nullable="false" MaxLength="6" />
-        </ComplexType>
         <ComplexType Name="SP_GetdgvEmergency_Result">
           <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
@@ -551,6 +546,7 @@
         <ComplexType Name="SP_GetdgvRequest_Result">
           <Property Type="String" Name="AssetSN" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="AssetName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="true" />
           <Property Type="String" Name="EmployeeFullName" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="AssetID" Nullable="false" MaxLength="100" />
@@ -559,16 +555,15 @@
           <Property Type="String" Name="DepartmentLocationID" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="DepartmentID" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="PriorityName" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="RequestDate" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Session2ModelStoreContainer" CdmEntityContainer="Session2Entities">
+        <EntityContainerMapping StorageEntityContainer="WSC2019_Session2ModelStoreContainer" CdmEntityContainer="Session2Entities">
           <EntitySetMapping Name="AssetGroups">
-            <EntityTypeMapping TypeName="Session2Model.AssetGroup">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.AssetGroup">
               <MappingFragment StoreEntitySet="AssetGroups">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -576,7 +571,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Assets">
-            <EntityTypeMapping TypeName="Session2Model.Asset">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.Asset">
               <MappingFragment StoreEntitySet="Assets">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
@@ -590,7 +585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChangedParts">
-            <EntityTypeMapping TypeName="Session2Model.ChangedPart">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.ChangedPart">
               <MappingFragment StoreEntitySet="ChangedParts">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EmergencyMaintenanceID" ColumnName="EmergencyMaintenanceID" />
@@ -600,7 +595,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DepartmentLocations">
-            <EntityTypeMapping TypeName="Session2Model.DepartmentLocation">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.DepartmentLocation">
               <MappingFragment StoreEntitySet="DepartmentLocations">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
@@ -611,7 +606,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="Session2Model.Department">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.Department">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -619,7 +614,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmergencyMaintenances">
-            <EntityTypeMapping TypeName="Session2Model.EmergencyMaintenance">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.EmergencyMaintenance">
               <MappingFragment StoreEntitySet="EmergencyMaintenances">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AssetID" ColumnName="AssetID" />
@@ -634,7 +629,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="Session2Model.Employee">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.Employee">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -647,7 +642,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="Session2Model.Location">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.Location">
               <MappingFragment StoreEntitySet="Locations">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -655,7 +650,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Parts">
-            <EntityTypeMapping TypeName="Session2Model.Part">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.Part">
               <MappingFragment StoreEntitySet="Parts">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -664,16 +659,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Priorities">
-            <EntityTypeMapping TypeName="Session2Model.Priority">
+            <EntityTypeMapping TypeName="WSC2019_Session2Model.Priority">
               <MappingFragment StoreEntitySet="Priorities">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetdgvEmergency" FunctionName="Session2Model.Store.SP_GetdgvEmergency">
+          <FunctionImportMapping FunctionImportName="SP_GetdgvEmergency" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvEmergency">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Session2Model.SP_GetdgvEmergency_Result">
+              <ComplexTypeMapping TypeName="WSC2019_Session2Model.SP_GetdgvEmergency_Result">
                 <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
                 <ScalarProperty Name="LastClosedEM" ColumnName="LastClosedEM" />
@@ -682,11 +677,12 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetdgvRequest" FunctionName="Session2Model.Store.SP_GetdgvRequest">
+          <FunctionImportMapping FunctionImportName="SP_GetdgvRequest" FunctionName="WSC2019_Session2Model.Store.SP_GetdgvRequest">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Session2Model.SP_GetdgvRequest_Result">
+              <ComplexTypeMapping TypeName="WSC2019_Session2Model.SP_GetdgvRequest_Result">
                 <ScalarProperty Name="AssetSN" ColumnName="AssetSN" />
                 <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
                 <ScalarProperty Name="EmployeeFullName" ColumnName="EmployeeFullName" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="AssetID" ColumnName="AssetID" />
@@ -695,7 +691,6 @@
                 <ScalarProperty Name="DepartmentLocationID" ColumnName="DepartmentLocationID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="PriorityName" ColumnName="PriorityName" />
-                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

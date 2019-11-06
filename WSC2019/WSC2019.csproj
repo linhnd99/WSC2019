@@ -140,9 +140,6 @@
     <Compile Include="Model\SP_GetdgvRequest_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sp_loadReplaceDepartment_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session2DataSet.Designer.cs">

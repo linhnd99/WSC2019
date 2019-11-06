@@ -109,7 +109,8 @@ namespace WSC2019
                 pack["Department"] = dgvRequest.CurrentRow.Cells["Department"].Value.ToString();
                 pack["EmergencyMaintenanceID"] = dgvRequest.CurrentRow.Cells["EmergencyMaintenanceID"].Value.ToString();
                 frm2.Tag = pack;
-                frm2.ShowDialog(); 
+                frm2.ShowDialog();
+                LoadDataTable();
             }
         }
 
