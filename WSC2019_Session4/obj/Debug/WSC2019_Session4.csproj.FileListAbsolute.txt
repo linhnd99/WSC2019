@@ -7,3 +7,11 @@ C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\bin\Debug\WSC2019_Session4.exe
 C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\bin\Debug\WSC2019_Session4.pdb
 C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\obj\Debug\WSC2019_Session4.exe
 C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\obj\Debug\WSC2019_Session4.pdb
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\obj\Debug\WSC2019_Session4.frmInventoryReport.resources
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\obj\Debug\WSC2019_Session4.frmPurchaseOrder.resources
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\obj\Debug\WSC2019_Session4.frmWarehouseManagement.resources
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session4\obj\Debug\WSC2019_Session4.csproj.CopyComplete

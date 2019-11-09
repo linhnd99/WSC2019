@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvIventory = new System.Windows.Forms.DataGridView();
+            this.dgvCurrentIventory = new System.Windows.Forms.DataGridView();
             this.purchaseOrderManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,14 +40,15 @@
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Destination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIventory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentIventory)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvIventory
+            // dgvCurrentIventory
             // 
-            this.dgvIventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvCurrentIventory.AllowUserToAddRows = false;
+            this.dgvCurrentIventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCurrentIventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PartName,
             this.TransactionType,
             this.Date,
@@ -55,10 +56,10 @@
             this.Source,
             this.Destination,
             this.Action});
-            this.dgvIventory.Location = new System.Drawing.Point(12, 27);
-            this.dgvIventory.Name = "dgvIventory";
-            this.dgvIventory.Size = new System.Drawing.Size(776, 385);
-            this.dgvIventory.TabIndex = 1;
+            this.dgvCurrentIventory.Location = new System.Drawing.Point(12, 27);
+            this.dgvCurrentIventory.Name = "dgvCurrentIventory";
+            this.dgvCurrentIventory.Size = new System.Drawing.Size(776, 385);
+            this.dgvCurrentIventory.TabIndex = 1;
             // 
             // purchaseOrderManagementToolStripMenuItem
             // 
@@ -95,42 +96,56 @@
             // 
             // PartName
             // 
+            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartName.DataPropertyName = "PartName";
             this.PartName.HeaderText = "Part Name";
             this.PartName.Name = "PartName";
             this.PartName.ReadOnly = true;
             // 
             // TransactionType
             // 
+            this.TransactionType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TransactionType.DataPropertyName = "TransactionType";
             this.TransactionType.HeaderText = "Transaction Type";
             this.TransactionType.Name = "TransactionType";
             this.TransactionType.ReadOnly = true;
             // 
             // Date
             // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.DataPropertyName = "Date";
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
             // 
             // Amount
             // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Amount.DataPropertyName = "Amount";
             this.Amount.HeaderText = "Amount";
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
             // 
             // Source
             // 
+            this.Source.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Source.DataPropertyName = "Source";
             this.Source.HeaderText = "Source";
             this.Source.Name = "Source";
             this.Source.ReadOnly = true;
             // 
             // Destination
             // 
+            this.Destination.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Destination.DataPropertyName = "Destination";
             this.Destination.HeaderText = "Destination";
             this.Destination.Name = "Destination";
             this.Destination.ReadOnly = true;
             // 
             // Action
             // 
+            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Action.DataPropertyName = "Action";
             this.Action.HeaderText = "Action";
             this.Action.Name = "Action";
             this.Action.ReadOnly = true;
@@ -140,13 +155,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 424);
-            this.Controls.Add(this.dgvIventory);
+            this.Controls.Add(this.dgvCurrentIventory);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmInventoryManagement";
             this.Text = "Inventory Management";
             this.Load += new System.EventHandler(this.frmInventoryManagement_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentIventory)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -155,7 +170,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvIventory;
+        private System.Windows.Forms.DataGridView dgvCurrentIventory;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem warehouseManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;
