@@ -102,3 +102,14 @@ as begin
 end
 
 exec SP_GetdgvCurrentInventory
+
+create proc SP_GetdgvPurchaseOrder
+as begin
+	select Parts.Name as 'PartName', OrderItems.BatchNumber as 'BatchNumber', Amount, '00' as ID
+	from Parts inner join OrderItems on Parts.ID = OrderItems.PartID
+		inner join Orders on Orders.ID = OrderItems.OrderID
+		inner join TransactionTypes on TransactionTypes.ID = Orders.TransactionTypeID
+	where TransactionTypes.Name='Purchase Order'
+end
+
+exec SP_GetdgvPurchaseOrder
