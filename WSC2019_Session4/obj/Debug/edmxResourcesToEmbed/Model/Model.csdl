@@ -168,6 +168,7 @@
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <FunctionImport Name="SP_GetdgvCurrentInventory" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvCurrentInventory_Result)" />
+    <FunctionImport Name="SP_GetdgvPurchaseOrder" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvPurchaseOrder_Result)" />
   </EntityContainer>
   <ComplexType Name="SP_GetdgvCurrentInventory_Result">
     <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
@@ -176,5 +177,11 @@
     <Property Type="Double" Name="Amount" Nullable="true" />
     <Property Type="Int32" Name="SourceID" Nullable="true" />
     <Property Type="Int32" Name="DestinationID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_GetdgvPurchaseOrder_Result">
+    <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="BatchNumber" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="Amount" Nullable="true" />
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="2" />
   </ComplexType>
 </Schema>

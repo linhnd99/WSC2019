@@ -106,6 +106,9 @@
     <Compile Include="Model\SP_GetdgvCurrentInventory_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\SP_GetdgvPurchaseOrder_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Supplier.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

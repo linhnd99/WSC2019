@@ -38,5 +38,10 @@ namespace WSC2019_Session4.Model
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvCurrentInventory_Result>("SP_GetdgvCurrentInventory");
         }
+    
+        public virtual ObjectResult<SP_GetdgvPurchaseOrder_Result> SP_GetdgvPurchaseOrder()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvPurchaseOrder_Result>("SP_GetdgvPurchaseOrder");
+        }
     }
 }

@@ -48,6 +48,13 @@ namespace WSC2019_Session4
             frm2.ShowDialog();
         }
 
+        private bool Compare(Dictionary<string,string> a, Dictionary<string,string> b)
+        {
+            DateTime aa = DateTime.Parse(a["Date"]);
+            DateTime bb = DateTime.Parse(b["Date"]);
+            return aa < bb;
+        }
+
         private void LoadDataTable()
         {
             List<dynamic> listO = (from x in db.SP_GetdgvCurrentInventory() select x).ToList<dynamic>();
@@ -67,10 +74,25 @@ namespace WSC2019_Session4
                 temp["Destination"] = (from x in db.Warehouses where destinationid == x.ID select x).FirstOrDefault<Warehouse>().Name;
                 dataTable.Add(temp);
             }
-            dgvCurrentIventory.Rows.Clear();
-            foreach (Dictionary<string,string> one in dataTable)
+            dataTable.Sort(delegate(Dictionary<string, string> a, Dictionary<string, string> b)
             {
+                DateTime aa = DateTime.Parse(a["Date"]);
+                DateTime bb = DateTime.Parse(b["Date"]);
+                if (aa == bb)
+                {
+                    if (int.Parse(a["Amount"]) == int.Parse(b["Amount"])) return 0;
+                    else if (int.Parse(a["Amount"]) > int.Parse(b["Amount"])) return -1;
+                    else return 1;
+                }
+                if (aa < bb) return -1;
+                else return 1;
+            });
+            dgvCurrentIventory.Rows.Clear();
+            for (int i=0;i<dataTable.Count;i++)
+            {
+                Dictionary<string, string> one = dataTable[i];
                 dgvCurrentIventory.Rows.Add(one["PartName"], one["TransactionType"], one["Date"], one["Amount"], one["Source"], one["Destination"], "Edit Remove");
+                if (one["TransactionType"].Equals("Purchase Order")) dgvCurrentIventory.Rows[i].Cells["Amount"].Style.BackColor = Color.LightGreen;
             }
         }
     }

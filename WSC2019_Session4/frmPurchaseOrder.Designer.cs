@@ -35,6 +35,7 @@
             this.cbWarehouse = new System.Windows.Forms.ComboBox();
             this.dpkDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvPurchaseOrder = new System.Windows.Forms.DataGridView();
             this.btnAddToList = new System.Windows.Forms.Button();
             this.txtAmunt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -42,11 +43,15 @@
             this.cbPartname = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dgvParts = new System.Windows.Forms.DataGridView();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BatchNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPurchaseOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -94,14 +99,16 @@
             // 
             // dpkDate
             // 
+            this.dpkDate.CustomFormat = "dd/MM/yyyy";
+            this.dpkDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpkDate.Location = new System.Drawing.Point(78, 81);
             this.dpkDate.Name = "dpkDate";
-            this.dpkDate.Size = new System.Drawing.Size(200, 20);
+            this.dpkDate.Size = new System.Drawing.Size(140, 20);
             this.dpkDate.TabIndex = 5;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dgvParts);
+            this.groupBox1.Controls.Add(this.dgvPurchaseOrder);
             this.groupBox1.Controls.Add(this.btnAddToList);
             this.groupBox1.Controls.Add(this.txtAmunt);
             this.groupBox1.Controls.Add(this.label6);
@@ -115,6 +122,21 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parts List";
+            // 
+            // dgvPurchaseOrder
+            // 
+            this.dgvPurchaseOrder.AllowUserToAddRows = false;
+            this.dgvPurchaseOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPurchaseOrder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PartName,
+            this.BatchNumber,
+            this.Amount,
+            this.Action,
+            this.ID});
+            this.dgvPurchaseOrder.Location = new System.Drawing.Point(6, 71);
+            this.dgvPurchaseOrder.Name = "dgvPurchaseOrder";
+            this.dgvPurchaseOrder.Size = new System.Drawing.Size(764, 194);
+            this.dgvPurchaseOrder.TabIndex = 7;
             // 
             // btnAddToList
             // 
@@ -174,14 +196,6 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Part name";
             // 
-            // dgvParts
-            // 
-            this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvParts.Location = new System.Drawing.Point(6, 71);
-            this.dgvParts.Name = "dgvParts";
-            this.dgvParts.Size = new System.Drawing.Size(764, 194);
-            this.dgvParts.TabIndex = 7;
-            // 
             // btnSubmit
             // 
             this.btnSubmit.Location = new System.Drawing.Point(215, 415);
@@ -200,6 +214,47 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // PartName
+            // 
+            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartName.DataPropertyName = "PartName";
+            this.PartName.HeaderText = "Part Name";
+            this.PartName.Name = "PartName";
+            this.PartName.ReadOnly = true;
+            // 
+            // BatchNumber
+            // 
+            this.BatchNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BatchNumber.DataPropertyName = "BatchNumber";
+            this.BatchNumber.HeaderText = "Batch Number";
+            this.BatchNumber.Name = "BatchNumber";
+            this.BatchNumber.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Action.DataPropertyName = "Action";
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
             // frmPurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,9 +271,10 @@
             this.Controls.Add(this.label1);
             this.Name = "frmPurchaseOrder";
             this.Text = "Purchase Order";
+            this.Load += new System.EventHandler(this.frmPurchaseOrder_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPurchaseOrder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,8 +296,13 @@
         private System.Windows.Forms.ComboBox cbPartname;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dgvParts;
+        private System.Windows.Forms.DataGridView dgvPurchaseOrder;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BatchNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewLinkColumn Action;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WSC2019_Session4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WSC2019_Session4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="OrderItems">
           <Key>
             <PropertyRef Name="ID" />
@@ -130,6 +130,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="SP_GetdgvCurrentInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetdgvPurchaseOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="WSC2019_Session4ModelStoreContainer">
           <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -162,8 +163,7 @@
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WSC2019_Session4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -335,6 +335,7 @@
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <FunctionImport Name="SP_GetdgvCurrentInventory" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvCurrentInventory_Result)" />
+          <FunctionImport Name="SP_GetdgvPurchaseOrder" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvPurchaseOrder_Result)" />
         </EntityContainer>
         <ComplexType Name="SP_GetdgvCurrentInventory_Result">
           <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
@@ -343,6 +344,12 @@
           <Property Type="Double" Name="Amount" Nullable="true" />
           <Property Type="Int32" Name="SourceID" Nullable="true" />
           <Property Type="Int32" Name="DestinationID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetdgvPurchaseOrder_Result">
+          <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BatchNumber" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -417,6 +424,16 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="SourceID" ColumnName="SourceID" />
                 <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetdgvPurchaseOrder" FunctionName="WSC2019_Session4Model.Store.SP_GetdgvPurchaseOrder">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WSC2019_Session4Model.SP_GetdgvPurchaseOrder_Result">
+                <ScalarProperty Name="PartName" ColumnName="PartName" />
+                <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
