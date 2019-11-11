@@ -17,5 +17,6 @@ namespace WSC2019_Session4.Model
         public string BatchNumber { get; set; }
         public Nullable<double> Amount { get; set; }
         public string ID { get; set; }
+        public int PartID { get; set; }
     }
 }

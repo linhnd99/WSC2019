@@ -78,6 +78,7 @@
           <ScalarProperty Name="BatchNumber" ColumnName="BatchNumber" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartID" ColumnName="PartID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

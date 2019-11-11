@@ -183,5 +183,6 @@
     <Property Type="String" Name="BatchNumber" Nullable="true" MaxLength="100" />
     <Property Type="Double" Name="Amount" Nullable="true" />
     <Property Type="String" Name="ID" Nullable="false" MaxLength="2" />
+    <Property Type="Int32" Name="PartID" Nullable="false" />
   </ComplexType>
 </Schema>
