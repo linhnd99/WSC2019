@@ -177,6 +177,7 @@
     <Property Type="Double" Name="Amount" Nullable="true" />
     <Property Type="Int32" Name="SourceID" Nullable="true" />
     <Property Type="Int32" Name="DestinationID" Nullable="true" />
+    <Property Type="Int32" Name="SupplierID" Nullable="true" />
   </ComplexType>
   <ComplexType Name="SP_GetdgvPurchaseOrder_Result">
     <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
@@ -184,5 +185,6 @@
     <Property Type="Double" Name="Amount" Nullable="true" />
     <Property Type="String" Name="ID" Nullable="false" MaxLength="2" />
     <Property Type="Int32" Name="PartID" Nullable="false" />
+    <Property Type="Int32" Name="OrderItemID" Nullable="false" />
   </ComplexType>
 </Schema>

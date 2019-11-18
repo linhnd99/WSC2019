@@ -36,11 +36,6 @@
             this.dpkDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPurchaseOrder = new System.Windows.Forms.DataGridView();
-            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BatchNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAddToList = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,6 +45,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BatchNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -132,53 +133,13 @@
             this.BatchNumber,
             this.Amount,
             this.Action,
-            this.ID});
+            this.ID,
+            this.PartID});
             this.dgvPurchaseOrder.Location = new System.Drawing.Point(6, 71);
             this.dgvPurchaseOrder.Name = "dgvPurchaseOrder";
             this.dgvPurchaseOrder.Size = new System.Drawing.Size(764, 194);
             this.dgvPurchaseOrder.TabIndex = 7;
             this.dgvPurchaseOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchaseOrder_CellContentClick);
-            // 
-            // PartName
-            // 
-            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PartName.DataPropertyName = "PartName";
-            this.PartName.HeaderText = "Part Name";
-            this.PartName.Name = "PartName";
-            this.PartName.ReadOnly = true;
-            // 
-            // BatchNumber
-            // 
-            this.BatchNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BatchNumber.DataPropertyName = "BatchNumber";
-            this.BatchNumber.HeaderText = "Batch Number";
-            this.BatchNumber.Name = "BatchNumber";
-            this.BatchNumber.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // Action
-            // 
-            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Action.DataPropertyName = "Action";
-            this.Action.HeaderText = "Action";
-            this.Action.Name = "Action";
-            this.Action.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
             // 
             // btnAddToList
             // 
@@ -248,6 +209,7 @@
             this.btnSubmit.TabIndex = 7;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnCancel
             // 
@@ -257,6 +219,57 @@
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // PartName
+            // 
+            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartName.DataPropertyName = "PartName";
+            this.PartName.HeaderText = "Part Name";
+            this.PartName.Name = "PartName";
+            this.PartName.ReadOnly = true;
+            // 
+            // BatchNumber
+            // 
+            this.BatchNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BatchNumber.DataPropertyName = "BatchNumber";
+            this.BatchNumber.HeaderText = "Batch Number";
+            this.BatchNumber.Name = "BatchNumber";
+            this.BatchNumber.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Action.DataPropertyName = "Action";
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // PartID
+            // 
+            this.PartID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartID.DataPropertyName = "PartID";
+            this.PartID.HeaderText = "PartID";
+            this.PartID.Name = "PartID";
+            this.PartID.ReadOnly = true;
+            this.PartID.Visible = false;
             // 
             // frmPurchaseOrder
             // 
@@ -307,5 +320,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewLinkColumn Action;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
     }
 }

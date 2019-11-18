@@ -11,26 +11,34 @@ namespace WSC2019_Session4
     {
         private Session4Entities db;
         private List<Dictionary<string, string>> dataTable;
+        Dictionary<string, string> data ;
         public frmPurchaseOrder()
         {
             InitializeComponent();
-            db = new Session4Entities();
-            dataTable = new List<Dictionary<string, string>>();
         }
 
         private void frmPurchaseOrder_Load(object sender, EventArgs e)
         {
+            db = new Session4Entities();
+            dataTable = new List<Dictionary<string, string>>();
+            data = this.Tag as Dictionary<string, string>;
+
             cbSuppliers.ValueMember = "ID";
             cbSuppliers.DisplayMember = "Name";
             cbSuppliers.DataSource = (from x in db.Suppliers select x).ToList<Supplier>();
+            if (data["Type"] == "Edit") cbSuppliers.SelectedValue = data["SupplierID"];
+            //if (data["Type"] != "Edit") cbSuppliers.SelectedValue = int.Parse(data["SupplierID"]);
 
             cbWarehouse.ValueMember = "ID";
             cbWarehouse.DisplayMember = "Name";
             cbWarehouse.DataSource = (from x in db.Warehouses select x).ToList<Warehouse>();
+            //if (data["Type"] != "Edit") cbWarehouse.SelectedValue = int.Parse(data["WarehouseID"]);
+            if (data["Type"] == "Edit") cbSuppliers.SelectedValue = data["SourceID"];
 
             cbPartname.ValueMember = "ID";
             cbPartname.DisplayMember = "Name";
             cbPartname.DataSource = (from x in db.Parts select x).ToList<Part>();
+
 
             LoadDataTable();
 
@@ -45,26 +53,33 @@ namespace WSC2019_Session4
 
         private void LoadDataTable()
         {
-            List<dynamic> listO = new List<dynamic>();
-            listO = db.SP_GetdgvPurchaseOrder().ToList<dynamic>();
-            dataTable.Clear();
-            for (int i = 0; i < listO.Count; i++)
+            if (data["Type"]=="Edit")
             {
-                dynamic o = listO[i];
-                Dictionary<string, string> one = new Dictionary<string, string>() {
+                List<dynamic> listO = new List<dynamic>();
+                listO = db.SP_GetdgvPurchaseOrder().ToList<dynamic>();
+                dataTable.Clear();
+                for (int i = 0; i < listO.Count; i++)
+                {
+                    dynamic o = listO[i];
+                    Dictionary<string, string> one = new Dictionary<string, string>() {
                     {"PartName",o.PartName.ToString() },
                     {"BatchNumber",o.BatchNumber.ToString() },
                     {"Amount",o.Amount.ToString() },
                     {"ID","dgv"+(i+1)*DateTime.Now.GetHashCode() },
                     {"PartID",o.PartID.ToString() }
                 };
-                dataTable.Add(one);
-            }
+                    dataTable.Add(one);
+                }
 
-            for (int i = 0; i < dataTable.Count; i++)
+                for (int i = 0; i < dataTable.Count; i++)
+                {
+                    Dictionary<string, string> one = dataTable[i];
+                    dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"]);
+                }
+            }
+            else
             {
-                Dictionary<string, string> one = dataTable[i];
-                dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"]);
+
             }
         }
 
@@ -149,7 +164,7 @@ namespace WSC2019_Session4
             one["ID"] = "dgv" + (0 + 1) * DateTime.Now.GetHashCode();
             one["PartID"] = part.ID.ToString() ;
             dataTable.Add(one);
-            dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"]);
+            dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"], one["PartID"]);
         }
 
         private void dgvPurchaseOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -164,14 +179,51 @@ namespace WSC2019_Session4
                     if (amount <= 0)
                     {
                         MessageBox.Show("Can not delete this part because amount must be positive number", "Error");
+                        return;
+                    }
+                    else
+                    {
+                        amount--;
+                        dataTable[i]["Amount"] = amount.ToString();
+                        dgvPurchaseOrder.CurrentRow.Cells["Amount"].Value = amount.ToString();
+                        return;
                     }
                 }
-                else
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            TransactionType trans = (from x in db.TransactionTypes where x.Name == "Purchase Order" select x).FirstOrDefault();
+            if (data["Type"] == "New")
+            {
+                Order order = new Order
                 {
-                    int amount = int.Parse(dataTable[i]["Amount"]);
-                    amount--;
-                    dataTable[i]["Amount"] = amount.ToString();
+                    //ID = null,
+                    TransactionTypeID = trans.ID,
+                    SupplierID = int.Parse(data["SupplierID"]),
+                    SourceWarehouseID = int.Parse(data["WarehouseID"]),
+                    DestinationWarehouseID = int.Parse(data["WarehouseID"]),
+                    Date = dpkDate.Value
+                };
+                for (int i=0;i<dgvPurchaseOrder.Rows.Count;i++)
+                {
+                    OrderItem ordItem = new OrderItem {
+                       // ID = null,
+                        PartID = Convert.ToInt32(dgvPurchaseOrder.Rows[i].Cells["PartID"].Value),
+                        BatchNumber = dgvPurchaseOrder.Rows[i].Cells["BatchNumber"].Value.ToString(),
+                        Amount = Convert.ToInt32(dgvPurchaseOrder.Rows[i].Cells["Amount"].Value),
+                    };
+                    //ordItem.Part = (from x in db.Parts where x.ID == ordItem.PartID select x).SingleOrDefault();
+                    order.OrderItems.Add(ordItem);
                 }
+                db.Orders.Add(order);
+                db.SaveChanges();
             }
         }
     }

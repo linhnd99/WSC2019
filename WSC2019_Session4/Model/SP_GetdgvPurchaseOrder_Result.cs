@@ -18,5 +18,6 @@ namespace WSC2019_Session4.Model
         public Nullable<double> Amount { get; set; }
         public string ID { get; set; }
         public int PartID { get; set; }
+        public int OrderItemID { get; set; }
     }
 }

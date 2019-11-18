@@ -40,6 +40,10 @@
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Destination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Action2 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.SupplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DestionationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentIventory)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +59,11 @@
             this.Amount,
             this.Source,
             this.Destination,
-            this.Action});
+            this.Action,
+            this.Action2,
+            this.SupplierID,
+            this.SourceID,
+            this.DestionationID});
             this.dgvCurrentIventory.Location = new System.Drawing.Point(12, 27);
             this.dgvCurrentIventory.Name = "dgvCurrentIventory";
             this.dgvCurrentIventory.Size = new System.Drawing.Size(776, 385);
@@ -150,6 +158,41 @@
             this.Action.Name = "Action";
             this.Action.ReadOnly = true;
             // 
+            // Action2
+            // 
+            this.Action2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Action2.DataPropertyName = "Action2";
+            this.Action2.HeaderText = "Action2";
+            this.Action2.Name = "Action2";
+            this.Action2.ReadOnly = true;
+            this.Action2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // SupplierID
+            // 
+            this.SupplierID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SupplierID.DataPropertyName = "SupplierID";
+            this.SupplierID.HeaderText = "SupplierID";
+            this.SupplierID.Name = "SupplierID";
+            this.SupplierID.ReadOnly = true;
+            this.SupplierID.Visible = false;
+            // 
+            // SourceID
+            // 
+            this.SourceID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SourceID.HeaderText = "SourceID";
+            this.SourceID.Name = "SourceID";
+            this.SourceID.ReadOnly = true;
+            this.SourceID.Visible = false;
+            // 
+            // DestionationID
+            // 
+            this.DestionationID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DestionationID.HeaderText = "DestionationID";
+            this.DestionationID.Name = "DestionationID";
+            this.DestionationID.ReadOnly = true;
+            this.DestionationID.Visible = false;
+            // 
             // frmInventoryManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,5 +225,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
         private System.Windows.Forms.DataGridViewTextBoxColumn Destination;
         private System.Windows.Forms.DataGridViewLinkColumn Action;
+        private System.Windows.Forms.DataGridViewLinkColumn Action2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SourceID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DestionationID;
     }
 }

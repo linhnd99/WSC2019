@@ -95,7 +95,7 @@ select * from TransactionTypes
 create proc SP_GetdgvCurrentInventory
 as begin
 	select Parts.Name as 'PartName', TransactionTypes.Name as TransactionType, Orders.Date, Amount, 
-		Orders.SourceWarehouseID as SourceID, Orders.DestinationWarehouseID as DestinationID
+		Orders.SourceWarehouseID as SourceID, Orders.DestinationWarehouseID as DestinationID, Orders.SupplierID as 'SupplierID'
 	from Parts inner join OrderItems on Parts.ID=OrderItems.PartID
 		inner join Orders on Orders.ID = OrderItems.OrderID
 		inner join TransactionTypes on TransactionTypes.ID = Orders.TransactionTypeID
@@ -103,13 +103,13 @@ end
 
 exec SP_GetdgvCurrentInventory
 
-create proc SP_GetdgvPurchaseOrder
+alter proc SP_GetdgvPurchaseOrder (@SupplierID nvarchar(100), @WarehouseID nvarchar(100))
 as begin
-	select Parts.Name as 'PartName', OrderItems.BatchNumber as 'BatchNumber', Amount, '00' as ID, Parts.ID as 'PartID'
+	select Parts.Name as 'PartName', OrderItems.BatchNumber as 'BatchNumber', Amount, '00' as ID, Parts.ID as 'PartID', OrderItems.ID as 'OrderItemID'
 	from Parts inner join OrderItems on Parts.ID = OrderItems.PartID
 		inner join Orders on Orders.ID = OrderItems.OrderID
 		inner join TransactionTypes on TransactionTypes.ID = Orders.TransactionTypeID
-	where TransactionTypes.Name='Purchase Order'
+	where TransactionTypes.Name='Purchase Order' and Orders.SupplierID = @SupplierID and SourceWarehouseID = @WarehouseID
 end
 
-exec SP_GetdgvPurchaseOrder
+exec SP_GetdgvPurchaseOrder 1,1

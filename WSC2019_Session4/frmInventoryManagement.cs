@@ -25,6 +25,41 @@ namespace WSC2019_Session4
             //init db
             db = new Session4Entities();
 
+            //var order = new Order
+            //{
+            //    ID = 20,
+            //    Date = DateTime.Now,
+            //    SupplierID = 1,
+            //    TransactionTypeID = 1,
+            //    SourceWarehouseID = 1
+            //};
+
+            //var orderItem1 = new OrderItem
+            //{
+            //    ID = 43,
+            //    //OrderID = 20,
+            //    Amount = 100,
+            //    BatchNumber = "123",
+            //    PartID = 3
+            //};
+            //var orderItem2 = new OrderItem
+            //{
+            //    ID = 453,
+            //    //OrderID = 20,
+            //    Amount = 100,
+            //    BatchNumber = "123",
+            //    PartID = 3
+            //};
+
+            //order.OrderItems.Add(orderItem1);
+            //order.OrderItems.Add(orderItem2);
+
+
+            //db.Orders.Add(order);
+            //db.SaveChanges();
+
+            //var o = db.Orders.FirstOrDefault();
+
             //init dgvCurrentInventory
             dataTable = new List<Dictionary<string, string>>();
             LoadDataTable();
@@ -33,6 +68,11 @@ namespace WSC2019_Session4
         private void purchaseOrderManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPurchaseOrder frm2 = new frmPurchaseOrder();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data["SupplierID"] = dgvCurrentIventory.CurrentRow.Cells["SupplierID"].Value.ToString();
+            data["WarehouseID"] = dgvCurrentIventory.CurrentRow.Cells["SourceID"].Value.ToString();
+            data["Type"] = "New";
+            frm2.Tag = data;
             frm2.ShowDialog();
         }
 
@@ -48,7 +88,7 @@ namespace WSC2019_Session4
             frm2.ShowDialog();
         }
 
-        private bool Compare(Dictionary<string,string> a, Dictionary<string,string> b)
+        private bool Compare(Dictionary<string, string> a, Dictionary<string, string> b)
         {
             DateTime aa = DateTime.Parse(a["Date"]);
             DateTime bb = DateTime.Parse(b["Date"]);
@@ -67,6 +107,7 @@ namespace WSC2019_Session4
                     { "Amount", o.Amount.ToString() },
                     { "SourceID", o.SourceID.ToString()},
                     { "DestinationID", o.DestinationID.ToString() },
+                    { "SupplierID", o.SupplierID.ToString() }
                 };
                 int sourceid = int.Parse(temp["SourceID"]);
                 int destinationid = int.Parse(temp["DestinationID"]);
@@ -74,7 +115,7 @@ namespace WSC2019_Session4
                 temp["Destination"] = (from x in db.Warehouses where destinationid == x.ID select x).FirstOrDefault<Warehouse>().Name;
                 dataTable.Add(temp);
             }
-            dataTable.Sort(delegate(Dictionary<string, string> a, Dictionary<string, string> b)
+            dataTable.Sort(delegate (Dictionary<string, string> a, Dictionary<string, string> b)
             {
                 DateTime aa = DateTime.Parse(a["Date"]);
                 DateTime bb = DateTime.Parse(b["Date"]);
@@ -88,10 +129,10 @@ namespace WSC2019_Session4
                 else return 1;
             });
             dgvCurrentIventory.Rows.Clear();
-            for (int i=0;i<dataTable.Count;i++)
+            for (int i = 0; i < dataTable.Count; i++)
             {
                 Dictionary<string, string> one = dataTable[i];
-                dgvCurrentIventory.Rows.Add(one["PartName"], one["TransactionType"], one["Date"], one["Amount"], one["Source"], one["Destination"], "Edit Remove");
+                dgvCurrentIventory.Rows.Add(one["PartName"], one["TransactionType"], one["Date"], one["Amount"], one["Source"], one["Destination"], "Edit","Remove", one["SupplierID"], one["SourceID"], one["DestinationID"]);
                 if (one["TransactionType"].Equals("Purchase Order")) dgvCurrentIventory.Rows[i].Cells["Amount"].Style.BackColor = Color.LightGreen;
             }
         }

@@ -19,5 +19,6 @@ namespace WSC2019_Session4.Model
         public Nullable<double> Amount { get; set; }
         public Nullable<int> SourceID { get; set; }
         public Nullable<int> DestinationID { get; set; }
+        public Nullable<int> SupplierID { get; set; }
     }
 }

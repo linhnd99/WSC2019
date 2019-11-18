@@ -1,0 +1,10 @@
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\bin\Debug\WSC2019_Session6.exe.config
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\bin\Debug\WSC2019_Session6.exe
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\bin\Debug\WSC2019_Session6.pdb
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.frmInventoryDashboard.resources
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.Properties.Resources.resources
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.exe
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.pdb
+C:\Users\admin\Desktop\WSC2019\WSC2019_Session6\obj\Debug\WSC2019_Session6.frmInventoryControl.resources

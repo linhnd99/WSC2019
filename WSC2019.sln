@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSC2019_Session2", "WSC2019
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSC2019_Session4", "WSC2019_Session4\WSC2019_Session4.csproj", "{4DF113B8-C2C3-4259-8D2C-56FBBC82892E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSC2019_Session6", "WSC2019_Session6\WSC2019_Session6.csproj", "{13C731D6-7925-4972-8B11-857ED285A3F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4DF113B8-C2C3-4259-8D2C-56FBBC82892E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DF113B8-C2C3-4259-8D2C-56FBBC82892E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DF113B8-C2C3-4259-8D2C-56FBBC82892E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C731D6-7925-4972-8B11-857ED285A3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C731D6-7925-4972-8B11-857ED285A3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C731D6-7925-4972-8B11-857ED285A3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C731D6-7925-4972-8B11-857ED285A3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
