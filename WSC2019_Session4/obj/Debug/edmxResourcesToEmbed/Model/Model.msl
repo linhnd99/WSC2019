@@ -69,6 +69,8 @@
           <ScalarProperty Name="SourceID" ColumnName="SourceID" />
           <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
           <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

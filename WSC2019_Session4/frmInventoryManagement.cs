@@ -69,11 +69,12 @@ namespace WSC2019_Session4
         {
             frmPurchaseOrder frm2 = new frmPurchaseOrder();
             Dictionary<string, string> data = new Dictionary<string, string>();
-            data["SupplierID"] = dgvCurrentIventory.CurrentRow.Cells["SupplierID"].Value.ToString();
-            data["WarehouseID"] = dgvCurrentIventory.CurrentRow.Cells["SourceID"].Value.ToString();
+            /*data["SupplierID"] = dgvCurrentIventory.CurrentRow.Cells["SupplierID"].Value.ToString();
+            data["WarehouseID"] = dgvCurrentIventory.CurrentRow.Cells["SourceID"].Value.ToString();*/
             data["Type"] = "New";
             frm2.Tag = data;
             frm2.ShowDialog();
+            LoadDataTable();
         }
 
         private void warehouseManagementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -98,6 +99,8 @@ namespace WSC2019_Session4
         private void LoadDataTable()
         {
             List<dynamic> listO = (from x in db.SP_GetdgvCurrentInventory() select x).ToList<dynamic>();
+            dataTable.Clear();
+            dgvCurrentIventory.Rows.Clear();
             foreach (dynamic o in listO)
             {
                 Dictionary<string, string> temp = new Dictionary<string, string>() {
@@ -107,7 +110,9 @@ namespace WSC2019_Session4
                     { "Amount", o.Amount.ToString() },
                     { "SourceID", o.SourceID.ToString()},
                     { "DestinationID", o.DestinationID.ToString() },
-                    { "SupplierID", o.SupplierID.ToString() }
+                    { "SupplierID", o.SupplierID.ToString() },
+                    { "OrderItemID",o.OrderItemID.ToString() },
+                    {"OrderID",o.OrderID.ToString() }
                 };
                 int sourceid = int.Parse(temp["SourceID"]);
                 int destinationid = int.Parse(temp["DestinationID"]);
@@ -132,9 +137,38 @@ namespace WSC2019_Session4
             for (int i = 0; i < dataTable.Count; i++)
             {
                 Dictionary<string, string> one = dataTable[i];
-                dgvCurrentIventory.Rows.Add(one["PartName"], one["TransactionType"], one["Date"], one["Amount"], one["Source"], one["Destination"], "Edit","Remove", one["SupplierID"], one["SourceID"], one["DestinationID"]);
+                dgvCurrentIventory.Rows.Add(one["PartName"], one["TransactionType"], one["Date"], one["Amount"], one["Source"], one["Destination"], "Edit","Remove", one["SupplierID"], one["SourceID"], one["DestinationID"], one["OrderItemID"], one["OrderID"]);
                 if (one["TransactionType"].Equals("Purchase Order")) dgvCurrentIventory.Rows[i].Cells["Amount"].Style.BackColor = Color.LightGreen;
             }
+        }
+
+        private void dgvCurrentIventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //click Remove 
+            if (dgvCurrentIventory.CurrentCell.ColumnIndex == 7)
+            {
+                int orderitemid = Convert.ToInt32(dgvCurrentIventory.Rows[dgvCurrentIventory.CurrentCell.RowIndex].Cells["OrderItemID"].Value);
+                OrderItem orderitem = (from x in db.OrderItems where orderitemid == x.ID select x).FirstOrDefault();
+                db.OrderItems.Remove(orderitem);
+                db.SaveChanges();
+                return;
+            }
+
+            //click Edit
+            if (dgvCurrentIventory.CurrentCell.ColumnIndex==6)
+            {
+                frmPurchaseOrder frm2 = new frmPurchaseOrder();
+                Dictionary<string, string> data = new Dictionary<string, string>();
+                data["SupplierID"] = dgvCurrentIventory.CurrentRow.Cells["SupplierID"].Value.ToString();
+                data["WarehouseID"] = dgvCurrentIventory.CurrentRow.Cells["SourceID"].Value.ToString();
+                data["Date"] = dgvCurrentIventory.CurrentRow.Cells["Date"].Value.ToString();
+                data["OrderID"] = dgvCurrentIventory.CurrentRow.Cells["OrderID"].Value.ToString();
+                data["Type"] = "Edit";
+                frm2.Tag = data;
+                frm2.ShowDialog();
+                LoadDataTable();
+            }
+
         }
     }
 }

@@ -125,7 +125,10 @@
     </ReferentialConstraint>
   </Association>
   <Function Name="SP_GetdgvCurrentInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="SP_GetdgvPurchaseOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetdgvPurchaseOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SupplierID" Type="nvarchar" Mode="In" />
+    <Parameter Name="WarehouseID" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="WSC2019_Session4ModelStoreContainer">
     <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />

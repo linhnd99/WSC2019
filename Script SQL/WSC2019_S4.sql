@@ -92,10 +92,11 @@ select * from Parts
 select * from Suppliers
 select * from TransactionTypes
 
-create proc SP_GetdgvCurrentInventory
+alter proc SP_GetdgvCurrentInventory
 as begin
 	select Parts.Name as 'PartName', TransactionTypes.Name as TransactionType, Orders.Date, Amount, 
-		Orders.SourceWarehouseID as SourceID, Orders.DestinationWarehouseID as DestinationID, Orders.SupplierID as 'SupplierID'
+		Orders.SourceWarehouseID as SourceID, Orders.DestinationWarehouseID as DestinationID, Orders.SupplierID as 'SupplierID', 
+		OrderItems.ID as 'OrderItemID', Orders.ID as 'OrderID'
 	from Parts inner join OrderItems on Parts.ID=OrderItems.PartID
 		inner join Orders on Orders.ID = OrderItems.OrderID
 		inner join TransactionTypes on TransactionTypes.ID = Orders.TransactionTypeID

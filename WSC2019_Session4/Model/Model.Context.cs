@@ -39,9 +39,17 @@ namespace WSC2019_Session4.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvCurrentInventory_Result>("SP_GetdgvCurrentInventory");
         }
     
-        public virtual ObjectResult<SP_GetdgvPurchaseOrder_Result> SP_GetdgvPurchaseOrder()
+        public virtual ObjectResult<SP_GetdgvPurchaseOrder_Result> SP_GetdgvPurchaseOrder(string supplierID, string warehouseID)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvPurchaseOrder_Result>("SP_GetdgvPurchaseOrder");
+            var supplierIDParameter = supplierID != null ?
+                new ObjectParameter("SupplierID", supplierID) :
+                new ObjectParameter("SupplierID", typeof(string));
+    
+            var warehouseIDParameter = warehouseID != null ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetdgvPurchaseOrder_Result>("SP_GetdgvPurchaseOrder", supplierIDParameter, warehouseIDParameter);
         }
     }
 }

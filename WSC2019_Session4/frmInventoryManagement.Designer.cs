@@ -44,6 +44,8 @@
             this.SupplierID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SourceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DestionationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentIventory)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,11 +65,14 @@
             this.Action2,
             this.SupplierID,
             this.SourceID,
-            this.DestionationID});
+            this.DestionationID,
+            this.OrderItemID,
+            this.OrderID});
             this.dgvCurrentIventory.Location = new System.Drawing.Point(12, 27);
             this.dgvCurrentIventory.Name = "dgvCurrentIventory";
             this.dgvCurrentIventory.Size = new System.Drawing.Size(776, 385);
             this.dgvCurrentIventory.TabIndex = 1;
+            this.dgvCurrentIventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentIventory_CellContentClick);
             // 
             // purchaseOrderManagementToolStripMenuItem
             // 
@@ -193,6 +198,22 @@
             this.DestionationID.ReadOnly = true;
             this.DestionationID.Visible = false;
             // 
+            // OrderItemID
+            // 
+            this.OrderItemID.HeaderText = "OrderItemID";
+            this.OrderItemID.Name = "OrderItemID";
+            this.OrderItemID.ReadOnly = true;
+            this.OrderItemID.Visible = false;
+            // 
+            // OrderID
+            // 
+            this.OrderID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderID.DataPropertyName = "OrderID";
+            this.OrderID.HeaderText = "OrderID";
+            this.OrderID.Name = "OrderID";
+            this.OrderID.ReadOnly = true;
+            this.OrderID.Visible = false;
+            // 
             // frmInventoryManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,5 +250,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SourceID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DestionationID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
     }
 }

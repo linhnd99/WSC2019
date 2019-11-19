@@ -51,6 +51,7 @@
             this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchaseOrder)).BeginInit();
             this.SuspendLayout();
@@ -134,7 +135,8 @@
             this.Amount,
             this.Action,
             this.ID,
-            this.PartID});
+            this.PartID,
+            this.OrderItemID});
             this.dgvPurchaseOrder.Location = new System.Drawing.Point(6, 71);
             this.dgvPurchaseOrder.Name = "dgvPurchaseOrder";
             this.dgvPurchaseOrder.Size = new System.Drawing.Size(764, 194);
@@ -271,6 +273,15 @@
             this.PartID.ReadOnly = true;
             this.PartID.Visible = false;
             // 
+            // OrderItemID
+            // 
+            this.OrderItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderItemID.DataPropertyName = "OrderItemID";
+            this.OrderItemID.HeaderText = "OrderItemID";
+            this.OrderItemID.Name = "OrderItemID";
+            this.OrderItemID.ReadOnly = true;
+            this.OrderItemID.Visible = false;
+            // 
             // frmPurchaseOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,5 +332,6 @@
         private System.Windows.Forms.DataGridViewLinkColumn Action;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderItemID;
     }
 }

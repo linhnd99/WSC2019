@@ -215,7 +215,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmWarehouseManagement";
-            this.Text = "Purchase Order";
+            this.Text = "Warehouse Management";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();

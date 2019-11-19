@@ -26,14 +26,16 @@ namespace WSC2019_Session4
             cbSuppliers.ValueMember = "ID";
             cbSuppliers.DisplayMember = "Name";
             cbSuppliers.DataSource = (from x in db.Suppliers select x).ToList<Supplier>();
-            if (data["Type"] == "Edit") cbSuppliers.SelectedValue = data["SupplierID"];
+            if (data["Type"] == "Edit") cbSuppliers.SelectedValue = int.Parse(data["SupplierID"]);
             //if (data["Type"] != "Edit") cbSuppliers.SelectedValue = int.Parse(data["SupplierID"]);
 
             cbWarehouse.ValueMember = "ID";
             cbWarehouse.DisplayMember = "Name";
             cbWarehouse.DataSource = (from x in db.Warehouses select x).ToList<Warehouse>();
             //if (data["Type"] != "Edit") cbWarehouse.SelectedValue = int.Parse(data["WarehouseID"]);
-            if (data["Type"] == "Edit") cbSuppliers.SelectedValue = data["SourceID"];
+            if (data["Type"] == "Edit") cbSuppliers.SelectedValue = int.Parse(data["WarehouseID"]);
+
+            if (data["Type"] == "Edit") dpkDate.Value = DateTime.Parse(data["Date"]) ;
 
             cbPartname.ValueMember = "ID";
             cbPartname.DisplayMember = "Name";
@@ -55,31 +57,34 @@ namespace WSC2019_Session4
         {
             if (data["Type"]=="Edit")
             {
+                dataTable.Clear();
+                dgvPurchaseOrder.Rows.Clear();
                 List<dynamic> listO = new List<dynamic>();
-                listO = db.SP_GetdgvPurchaseOrder().ToList<dynamic>();
+                listO = db.SP_GetdgvPurchaseOrder(data["SupplierID"],data["WarehouseID"]).ToList<dynamic>();
                 dataTable.Clear();
                 for (int i = 0; i < listO.Count; i++)
                 {
                     dynamic o = listO[i];
                     Dictionary<string, string> one = new Dictionary<string, string>() {
-                    {"PartName",o.PartName.ToString() },
-                    {"BatchNumber",o.BatchNumber.ToString() },
-                    {"Amount",o.Amount.ToString() },
-                    {"ID","dgv"+(i+1)*DateTime.Now.GetHashCode() },
-                    {"PartID",o.PartID.ToString() }
-                };
+                        {"PartName",o.PartName.ToString() },
+                        {"BatchNumber",o.BatchNumber.ToString() },
+                        {"Amount",o.Amount.ToString() },
+                        {"ID","dgv"+(i+1)*DateTime.Now.GetHashCode() },
+                        {"PartID",o.PartID.ToString() },
+                        {"OrderItemID",o.OrderItemID.ToString() }
+                    };
                     dataTable.Add(one);
                 }
 
                 for (int i = 0; i < dataTable.Count; i++)
                 {
                     Dictionary<string, string> one = dataTable[i];
-                    dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"]);
+                    dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"],one["PartID"],one["OrderItemID"]);
                 }
             }
             else
             {
-
+                
             }
         }
 
@@ -165,11 +170,33 @@ namespace WSC2019_Session4
             one["PartID"] = part.ID.ToString() ;
             dataTable.Add(one);
             dgvPurchaseOrder.Rows.Add(one["PartName"], one["BatchNumber"], one["Amount"], "Remove", one["ID"], one["PartID"]);
+            OrderItem orderItem = new OrderItem {
+                OrderID = Convert.ToInt32(data["OrderID"]),
+                Amount = double.Parse(one["Amount"]),
+                PartID = int.Parse(one["PartID"]),
+                BatchNumber = one["BatchNumber"]
+            };
+            db.OrderItems.Add(orderItem);
         }
 
         private void dgvPurchaseOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string dgvID = dgvPurchaseOrder.CurrentRow.Cells["ID"].Value.ToString();
+            //click Remove
+            int orderitemid = Convert.ToInt32(dgvPurchaseOrder.CurrentRow.Cells["OrderItemID"].Value);
+            dgvPurchaseOrder.Rows.RemoveAt(dgvPurchaseOrder.CurrentCell.RowIndex);
+            //delete OrderItem
+            OrderItem orderItem = (from x in db.OrderItems
+                                   where x.ID == orderitemid
+                                   select x).SingleOrDefault();
+            int orderid = Convert.ToInt32(orderItem.OrderID);
+            db.OrderItems.Remove(orderItem);
+            List<OrderItem> listOrderItem = (from x in db.Orders
+                                             from y in db.OrderItems
+                                             where x.ID == y.OrderID
+                                             select y).ToList();
+            if (listOrderItem == null) 
+                db.Orders.Remove((from x in db.Orders where x.ID == orderid select x).SingleOrDefault());
+            /*string dgvID = dgvPurchaseOrder.CurrentRow.Cells["ID"].Value.ToString();
             Dictionary<string, string> obj = new Dictionary<string, string>();
             for (int i=0;i<dataTable.Count;i++)
             {
@@ -189,7 +216,7 @@ namespace WSC2019_Session4
                         return;
                     }
                 }
-            }
+            }*/
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -224,6 +251,34 @@ namespace WSC2019_Session4
                 }
                 db.Orders.Add(order);
                 db.SaveChanges();
+                return;
+            }
+            if (data["Type"] == "Edit")
+            {
+                db.SaveChanges();
+                //delete (chỉ trước orderItem, xóa Order sau)
+                /*int supplierid = int.Parse(data["SupplierID"]);
+                int warehouseid = int.Parse(data["WarehouseID"]);
+                List < OrderItem > listOrderItem = (from x in db.OrderItems
+                                                    from y in db.Orders
+                                                    where x.OrderID == y.ID && y.SupplierID == supplierid && y.SourceWarehouseID == warehouseid
+                                                    select x).ToList();
+                foreach (OrderItem orderItem in listOrderItem)
+                {
+                    db.OrderItems.Remove(orderItem);
+                }
+                List<Order> listOrder = (from x in db.Orders where x.SupplierID == supplierid && x.SourceWarehouseID == warehouseid select x).ToList();
+                foreach (Order order in listOrder)
+                {
+                    db.Orders.Remove(order);
+                }
+
+                //insert (thêm Order trước, thêm OrderItem sau)
+                
+                for (int i=0;i<dgvPurchaseOrder.Rows.Count;i++)
+                {
+
+                }*/
             }
         }
     }

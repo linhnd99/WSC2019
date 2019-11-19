@@ -168,7 +168,10 @@
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <FunctionImport Name="SP_GetdgvCurrentInventory" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvCurrentInventory_Result)" />
-    <FunctionImport Name="SP_GetdgvPurchaseOrder" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvPurchaseOrder_Result)" />
+    <FunctionImport Name="SP_GetdgvPurchaseOrder" ReturnType="Collection(WSC2019_Session4Model.SP_GetdgvPurchaseOrder_Result)">
+      <Parameter Name="SupplierID" Mode="In" Type="String" />
+      <Parameter Name="WarehouseID" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_GetdgvCurrentInventory_Result">
     <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
@@ -178,6 +181,8 @@
     <Property Type="Int32" Name="SourceID" Nullable="true" />
     <Property Type="Int32" Name="DestinationID" Nullable="true" />
     <Property Type="Int32" Name="SupplierID" Nullable="true" />
+    <Property Type="Int32" Name="OrderItemID" Nullable="false" />
+    <Property Type="Int32" Name="OrderID" Nullable="false" />
   </ComplexType>
   <ComplexType Name="SP_GetdgvPurchaseOrder_Result">
     <Property Type="String" Name="PartName" Nullable="true" MaxLength="100" />
