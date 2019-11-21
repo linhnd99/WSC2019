@@ -80,13 +80,17 @@ namespace WSC2019_Session4
         private void warehouseManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmWarehouseManagement frm2 = new frmWarehouseManagement();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data["Type"] = "New";
             frm2.ShowDialog();
+            LoadDataTable();
         }
 
         private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmInventoryManagement frm2 = new frmInventoryManagement();
+            frmInventoryReport frm2 = new frmInventoryReport();
             frm2.ShowDialog();
+            LoadDataTable();
         }
 
         private bool Compare(Dictionary<string, string> a, Dictionary<string, string> b)

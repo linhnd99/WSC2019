@@ -39,12 +39,18 @@
             this.btnAddToList = new System.Windows.Forms.Button();
             this.txtAmunt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtBatchNumber = new System.Windows.Forms.TextBox();
             this.cbPartname = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BatchNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbBatchNumber = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +89,7 @@
             this.cbSourceWarehouse.Name = "cbSourceWarehouse";
             this.cbSourceWarehouse.Size = new System.Drawing.Size(190, 21);
             this.cbSourceWarehouse.TabIndex = 3;
+            this.cbSourceWarehouse.SelectedIndexChanged += new System.EventHandler(this.cbSourceWarehouse_SelectedIndexChanged);
             // 
             // cbDestinationWarehouse
             // 
@@ -91,21 +98,24 @@
             this.cbDestinationWarehouse.Name = "cbDestinationWarehouse";
             this.cbDestinationWarehouse.Size = new System.Drawing.Size(190, 21);
             this.cbDestinationWarehouse.TabIndex = 4;
+            this.cbDestinationWarehouse.SelectedIndexChanged += new System.EventHandler(this.cbDestinationWarehouse_SelectedIndexChanged);
             // 
             // dpkDate
             // 
+            this.dpkDate.CustomFormat = "dd/MM/yyyy";
+            this.dpkDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpkDate.Location = new System.Drawing.Point(78, 81);
             this.dpkDate.Name = "dpkDate";
-            this.dpkDate.Size = new System.Drawing.Size(200, 20);
+            this.dpkDate.Size = new System.Drawing.Size(140, 20);
             this.dpkDate.TabIndex = 5;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbBatchNumber);
             this.groupBox1.Controls.Add(this.dgvParts);
             this.groupBox1.Controls.Add(this.btnAddToList);
             this.groupBox1.Controls.Add(this.txtAmunt);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtBatchNumber);
             this.groupBox1.Controls.Add(this.cbPartname);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -118,7 +128,15 @@
             // 
             // dgvParts
             // 
+            this.dgvParts.AllowUserToAddRows = false;
             this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvParts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PartName,
+            this.BatchNumber,
+            this.Amount,
+            this.Action,
+            this.PartID,
+            this.OrderItemID});
             this.dgvParts.Location = new System.Drawing.Point(6, 71);
             this.dgvParts.Name = "dgvParts";
             this.dgvParts.Size = new System.Drawing.Size(764, 194);
@@ -149,13 +167,6 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "Amount";
             // 
-            // txtBatchNumber
-            // 
-            this.txtBatchNumber.Location = new System.Drawing.Point(322, 34);
-            this.txtBatchNumber.Name = "txtBatchNumber";
-            this.txtBatchNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtBatchNumber.TabIndex = 3;
-            // 
             // cbPartname
             // 
             this.cbPartname.FormattingEnabled = true;
@@ -163,6 +174,7 @@
             this.cbPartname.Name = "cbPartname";
             this.cbPartname.Size = new System.Drawing.Size(121, 21);
             this.cbPartname.TabIndex = 2;
+            this.cbPartname.SelectedIndexChanged += new System.EventHandler(this.cbPartname_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -199,6 +211,61 @@
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // PartName
+            // 
+            this.PartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartName.HeaderText = "PartName";
+            this.PartName.Name = "PartName";
+            this.PartName.ReadOnly = true;
+            // 
+            // BatchNumber
+            // 
+            this.BatchNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BatchNumber.HeaderText = "BatchNumber";
+            this.BatchNumber.Name = "BatchNumber";
+            this.BatchNumber.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // PartID
+            // 
+            this.PartID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PartID.HeaderText = "PartID";
+            this.PartID.Name = "PartID";
+            this.PartID.ReadOnly = true;
+            this.PartID.Visible = false;
+            // 
+            // OrderItemID
+            // 
+            this.OrderItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderItemID.HeaderText = "OrderItemID";
+            this.OrderItemID.Name = "OrderItemID";
+            this.OrderItemID.ReadOnly = true;
+            this.OrderItemID.Visible = false;
+            // 
+            // cbBatchNumber
+            // 
+            this.cbBatchNumber.FormattingEnabled = true;
+            this.cbBatchNumber.Location = new System.Drawing.Point(322, 35);
+            this.cbBatchNumber.Name = "cbBatchNumber";
+            this.cbBatchNumber.Size = new System.Drawing.Size(91, 21);
+            this.cbBatchNumber.TabIndex = 8;
             // 
             // frmWarehouseManagement
             // 
@@ -216,6 +283,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmWarehouseManagement";
             this.Text = "Warehouse Management";
+            this.Load += new System.EventHandler(this.frmWarehouseManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
@@ -236,12 +304,18 @@
         private System.Windows.Forms.Button btnAddToList;
         private System.Windows.Forms.TextBox txtAmunt;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtBatchNumber;
         private System.Windows.Forms.ComboBox cbPartname;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgvParts;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cbBatchNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BatchNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewLinkColumn Action;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderItemID;
     }
 }
